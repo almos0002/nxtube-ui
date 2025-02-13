@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - VideoFlex</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-neutral-900 text-white min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full mx-4">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <a href="index.html" class="inline-flex items-center space-x-3">
+                <i class="fas fa-play-circle text-red-500 text-4xl"></i>
+                <span class="text-2xl font-bold text-neutral-100">VideoFlex</span>
+            </a>
+        </div>
+
+        <!-- Login Form -->
+        <div class="bg-neutral-800 rounded-xl p-8 shadow-xl">
+            <h2 class="text-2xl font-bold text-neutral-100 mb-6 text-center">Welcome Back</h2>
+            <form class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-neutral-300 mb-2">Email Address</label>
+                    <input type="email" id="email" name="email" 
+                           class="w-full px-4 py-3 bg-neutral-700 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-neutral-100" 
+                           placeholder="Enter your email">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-neutral-300 mb-2">Password</label>
+                    <input type="password" id="password" name="password" 
+                           class="w-full px-4 py-3 bg-neutral-700 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-neutral-100" 
+                           placeholder="Enter your password">
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" id="remember" class="w-4 h-4 bg-neutral-700 border-neutral-600 rounded focus:ring-red-500 text-red-500">
+                        <span class="ml-2 text-sm text-neutral-300">Remember me</span>
+                    </label>
+                    <a href="#" class="text-sm text-red-400 hover:text-red-500">Forgot password?</a>
+                </div>
+                <button type="submit" 
+                        class="w-full py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                    Sign In
+                </button>
+            </form>
+            <p class="mt-6 text-center text-neutral-400">
+                Don't have an account? 
+                <a href="register.html" class="text-red-400 hover:text-red-500">Sign up</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
