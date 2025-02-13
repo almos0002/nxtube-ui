@@ -8,10 +8,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .video-card {
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
         .video-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+        }
+        .video-card .thumbnail-wrapper {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .video-card .thumbnail {
+            transform: scale(1);
+            transition: transform 0.5s ease;
+        }
+        .video-card:hover .thumbnail {
+            transform: scale(1.05);
+        }
+        .video-card .play-icon {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: all 0.3s ease;
+        }
+        .video-card:hover .play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .video-card .duration {
+            opacity: 0.9;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        .video-card:hover .duration {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+        .video-card .metadata {
+            transition: color 0.3s ease;
+        }
+        .video-card:hover .title {
+            color: #ef4444;
         }
         /* Mobile Menu Styles */
         .mobile-menu-overlay {
@@ -281,25 +316,43 @@
                 <h2 class="text-2xl font-bold mb-6">Featured Videos</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     <!-- Video Cards -->
-                    <div class="bg-neutral-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all">
-                        <div class="relative">
-                            <img src="https://picsum.photos/300/200" alt="Video thumbnail" class="w-full">
-                            <span class="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-sm">12:34</span>
+                    <div class="video-card group">
+                        <div class="thumbnail-wrapper relative aspect-video mb-3">
+                            <img src="https://picsum.photos/400/225" alt="Video thumbnail" class="thumbnail w-full h-full object-cover">
+                            <span class="duration absolute bottom-2 right-2 px-2 py-1 bg-black/90 text-xs rounded-md font-medium">12:34</span>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="play-icon absolute top-1/2 left-1/2 w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
                         </div>
-                        <div class="p-4">
-                            <h3 class="font-semibold mb-1">Amazing Video Title</h3>
-                            <p class="text-sm text-neutral-400">1.2M views • 2 days ago</p>
+                        <div class="metadata space-y-1">
+                            <h3 class="title text-sm font-medium line-clamp-2">Amazing Video Title That Might Be Long and Span Multiple Lines</h3>
+                            <div class="flex items-center text-xs text-neutral-400">
+                                <span>1.2M views</span>
+                                <span class="mx-1">•</span>
+                                <span>2 days ago</span>
+                            </div>
                         </div>
                     </div>
                     <!-- Repeat video cards with different images and titles -->
-                    <div class="bg-neutral-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all">
-                        <div class="relative">
-                            <img src="https://picsum.photos/301/200" alt="Video thumbnail" class="w-full">
-                            <span class="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-sm">8:45</span>
+                    <div class="video-card group">
+                        <div class="thumbnail-wrapper relative aspect-video mb-3">
+                            <img src="https://picsum.photos/401/225" alt="Video thumbnail" class="thumbnail w-full h-full object-cover">
+                            <span class="duration absolute bottom-2 right-2 px-2 py-1 bg-black/90 text-xs rounded-md font-medium">8:45</span>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="play-icon absolute top-1/2 left-1/2 w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
                         </div>
-                        <div class="p-4">
-                            <h3 class="font-semibold mb-1">Epic Adventure Video</h3>
-                            <p class="text-sm text-neutral-400">856K views • 5 days ago</p>
+                        <div class="metadata space-y-1">
+                            <h3 class="title text-sm font-medium line-clamp-2">Epic Adventure Video</h3>
+                            <div class="flex items-center text-xs text-neutral-400">
+                                <span>856K views</span>
+                                <span class="mx-1">•</span>
+                                <span>5 days ago</span>
+                            </div>
                         </div>
                     </div>
                     <!-- More video cards... -->
@@ -313,14 +366,23 @@
                 <h2 class="text-2xl font-bold mb-6">Trending Now</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     <!-- Video Cards -->
-                    <div class="bg-neutral-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all">
-                        <div class="relative">
-                            <img src="https://picsum.photos/302/200" alt="Video thumbnail" class="w-full">
-                            <span class="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-sm">15:20</span>
+                    <div class="video-card group">
+                        <div class="thumbnail-wrapper relative aspect-video mb-3">
+                            <img src="https://picsum.photos/402/225" alt="Video thumbnail" class="thumbnail w-full h-full object-cover">
+                            <span class="duration absolute bottom-2 right-2 px-2 py-1 bg-black/90 text-xs rounded-md font-medium">15:20</span>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="play-icon absolute top-1/2 left-1/2 w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-play text-white"></i>
+                                </div>
+                            </div>
                         </div>
-                        <div class="p-4">
-                            <h3 class="font-semibold mb-1">Trending Video Title</h3>
-                            <p class="text-sm text-neutral-400">2.5M views • 1 day ago</p>
+                        <div class="metadata space-y-1">
+                            <h3 class="title text-sm font-medium line-clamp-2">Trending Video Title</h3>
+                            <div class="flex items-center text-xs text-neutral-400">
+                                <span>2.5M views</span>
+                                <span class="mx-1">•</span>
+                                <span>1 day ago</span>
+                            </div>
                         </div>
                     </div>
                     <!-- More video cards... -->
