@@ -287,82 +287,137 @@
                 </div>
 
                 <!-- Video Info -->
-                <div class="bg-neutral-800 rounded-lg p-6">
-                    <h1 class="text-2xl font-bold mb-2">Video Title</h1>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-neutral-400">
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h1 class="text-2xl font-bold mb-2">Awesome Video Title</h1>
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="text-neutral-400 text-sm">
                             <span>1.2M views</span>
                             <span class="mx-2">•</span>
                             <span>2 days ago</span>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <button class="flex items-center space-x-2 text-neutral-400 hover:text-red-500">
+                            <button class="flex items-center space-x-2 text-neutral-100 hover:text-red-500 transition-colors">
                                 <i class="fas fa-thumbs-up"></i>
-                                <span>45K</span>
+                                <span>12K</span>
                             </button>
-                            <button class="flex items-center space-x-2 text-neutral-400 hover:text-red-500">
+                            <button class="flex items-center space-x-2 text-neutral-100 hover:text-red-500 transition-colors">
                                 <i class="fas fa-thumbs-down"></i>
-                                <span>2K</span>
+                                <span>24</span>
                             </button>
-                            <button class="flex items-center space-x-2 text-neutral-400 hover:text-red-500">
+                            <button class="flex items-center space-x-2 text-neutral-100 hover:text-red-500 transition-colors">
                                 <i class="fas fa-share"></i>
                                 <span>Share</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Channel Info -->
-                    <div class="flex items-center justify-between py-4 border-t border-neutral-700">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-neutral-700"></div>
-                            <div>
-                                <h3 class="font-semibold">Channel Name</h3>
-                                <p class="text-sm text-neutral-400">500K subscribers</p>
+                    <!-- Categories, Actors, and Channels Section -->
+                    <div class="space-y-4 mb-6 pt-6 border-t border-neutral-700">
+                        <!-- Categories -->
+                        <div class="flex">
+                            <h3 class="text-sm font-semibold text-neutral-400 mr-2">Categories:</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="#" class="flex items-center space-x-2 text-sm hover:text-red-500 transition-colors">
+                                    <div class="w-6 h-6 rounded-lg bg-red-500/10 flex items-center justify-center group-hover:bg-red-500/20 transition-colors">
+                                        <span class="text-red-500 text-sm">#</span>
+                                    </div>
+                                    <span>Action</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-2 text-sm hover:text-red-500 transition-colors">
+                                    <div class="w-6 h-6 rounded-lg bg-red-500/10 flex items-center justify-center group-hover:bg-red-500/20 transition-colors">
+                                        <span class="text-red-500 text-sm">#</span>
+                                    </div>
+                                    <span>Adventure</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-2 text-sm hover:text-red-500 transition-colors">
+                                    <div class="w-6 h-6 rounded-lg bg-red-500/10 flex items-center justify-center group-hover:bg-red-500/20 transition-colors">
+                                        <span class="text-red-500 text-sm">#</span>
+                                    </div>
+                                    <span>Drama</span>
+                                </a>
                             </div>
                         </div>
-                        <button class="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
-                            Subscribe
-                        </button>
-                    </div>
 
-                    <!-- Video Description -->
-                    <div class="mt-4 text-neutral-300">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <!-- Actors -->
+                        <div class="flex">
+                            <h3 class="text-sm font-semibold text-neutral-400 mr-2">Actors:</h3>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#" class="flex items-center space-x-3 group">
+                                    <div class="w-8 h-8 rounded-full bg-neutral-600 overflow-hidden">
+                                        <img src="https://picsum.photos/32/32" alt="Actor 1" class="w-full h-full object-cover">
+                                    </div>
+                                    <span class="text-sm group-hover:text-red-500 transition-colors">John Doe</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-3 group">
+                                    <div class="w-8 h-8 rounded-full bg-neutral-600 overflow-hidden">
+                                        <img src="https://picsum.photos/32/32" alt="Actor 2" class="w-full h-full object-cover">
+                                    </div>
+                                    <span class="text-sm group-hover:text-red-500 transition-colors">Jane Smith</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Channels -->
+                        <div class="flex">
+                            <h3 class="text-sm font-semibold text-neutral-400 mr-2">Channels:</h3>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#" class="flex items-center space-x-3 group">
+                                    <div class="w-8 h-8 rounded-full bg-neutral-600 overflow-hidden">
+                                        <img src="https://picsum.photos/32/32" alt="Channel 1" class="w-full h-full object-cover">
+                                    </div>
+                                    <span class="text-sm group-hover:text-red-500 transition-colors">MovieMasters</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-3 group">
+                                    <div class="w-8 h-8 rounded-full bg-neutral-600 overflow-hidden">
+                                        <img src="https://picsum.photos/32/32" alt="Channel 2" class="w-full h-full object-cover">
+                                    </div>
+                                    <span class="text-sm group-hover:text-red-500 transition-colors">CinemaWorld</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Comments Section -->
+                <!-- Related Videos Section -->
                 <div class="mt-8">
-                    <h2 class="text-xl font-bold mb-4">Comments</h2>
-                    <!-- Comment Input -->
-                    <div class="flex items-start space-x-4 mb-8">
-                        <div class="w-10 h-10 rounded-full bg-neutral-700"></div>
-                        <div class="flex-1">
-                            <textarea placeholder="Add a comment..." class="w-full px-4 py-2 bg-neutral-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"></textarea>
-                        </div>
-                    </div>
-                    <!-- Comments List -->
-                    <div class="space-y-6">
-                        <!-- Comment Item -->
-                        <div class="flex space-x-4">
-                            <div class="w-10 h-10 rounded-full bg-neutral-700"></div>
-                            <div>
-                                <div class="flex items-center space-x-2">
-                                    <h4 class="font-semibold">User Name</h4>
-                                    <span class="text-sm text-neutral-400">2 days ago</span>
-                                </div>
-                                <p class="mt-1 text-neutral-300">Great video! Really enjoyed the content.</p>
-                                <div class="flex items-center space-x-4 mt-2 text-sm text-neutral-400">
-                                    <button class="flex items-center space-x-2 hover:text-red-500">
-                                        <i class="fas fa-thumbs-up"></i>
-                                        <span>123</span>
-                                    </button>
-                                    <button class="flex items-center space-x-2 hover:text-red-500">
-                                        <i class="fas fa-thumbs-down"></i>
-                                    </button>
-                                    <button class="hover:text-red-500">Reply</button>
+                    <h2 class="text-xl font-bold mb-4">Related Videos</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Related Video Card -->
+                        <div class="video-card group">
+                            <div class="relative aspect-video rounded-xl overflow-hidden mb-3">
+                                <img src="https://picsum.photos/400/225" alt="Video thumbnail" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 right-2 bg-black/80 text-xs px-2 py-1 rounded">12:34</span>
+                                <div class="absolute inset-0 bg-neutral-900/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <i class="fas fa-play text-2xl"></i>
                                 </div>
                             </div>
+                            <h3 class="font-medium mb-1 group-hover:text-red-500 transition-colors">Amazing Video Title</h3>
+                            <p class="text-sm text-neutral-400">1.2M views • 2 days ago</p>
+                        </div>
+
+                        <!-- More Related Video Cards -->
+                        <div class="video-card group">
+                            <div class="relative aspect-video rounded-xl overflow-hidden mb-3">
+                                <img src="https://picsum.photos/400/225" alt="Video thumbnail" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 right-2 bg-black/80 text-xs px-2 py-1 rounded">08:45</span>
+                                <div class="absolute inset-0 bg-neutral-900/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <i class="fas fa-play text-2xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="font-medium mb-1 group-hover:text-red-500 transition-colors">Another Great Video</h3>
+                            <p class="text-sm text-neutral-400">850K views • 5 days ago</p>
+                        </div>
+
+                        <div class="video-card group">
+                            <div class="relative aspect-video rounded-xl overflow-hidden mb-3">
+                                <img src="https://picsum.photos/400/225" alt="Video thumbnail" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 right-2 bg-black/80 text-xs px-2 py-1 rounded">15:20</span>
+                                <div class="absolute inset-0 bg-neutral-900/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <i class="fas fa-play text-2xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="font-medium mb-1 group-hover:text-red-500 transition-colors">Must Watch Content</h3>
+                            <p class="text-sm text-neutral-400">2.1M views • 1 week ago</p>
                         </div>
                     </div>
                 </div>
