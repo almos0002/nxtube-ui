@@ -484,21 +484,92 @@
 
             <!-- Right Sidebar -->
             <div class="lg:w-96">
-                <h2 class="text-xl font-bold mb-4">Up Next</h2>
-                <div class="space-y-4">
-                    <!-- Recommended Video Card -->
-                    <div class="flex space-x-4 bg-neutral-800 rounded-lg p-3 hover:bg-neutral-700/50 transition-colors">
-                        <div class="relative w-40 h-24">
-                            <img src="https://picsum.photos/160/90" alt="Video thumbnail" class="w-full h-full object-cover rounded-lg">
-                            <span class="absolute bottom-1 right-1 bg-black bg-opacity-70 px-1 text-xs rounded">12:34</span>
+                <div class="sticky top-24">
+                    <h2 class="text-xl font-bold mb-4">Recommended</h2>
+                    
+                    <!-- Recommended Videos -->
+                    <div class="space-y-2">
+                        <!-- Recommended Video -->
+                        <div class="video-card group hover:bg-neutral-800/30 rounded-xl p-2 transition-colors">
+                            <div class="flex items-start">
+                                <div class="thumbnail-wrapper relative w-40 aspect-video rounded-lg overflow-hidden">
+                                    <img src="https://picsum.photos/401/225" alt="Video thumbnail" class="thumbnail w-full h-full object-cover">
+                                    <span class="duration absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/90 text-xs font-medium rounded">12:34</span>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <div class="play-icon absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-play text-sm text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-1 ml-3">
+                                    <h3 class="title text-sm font-medium line-clamp-2 mb-1.5 group-hover:text-red-500 transition-colors">Amazing Video Title That Might Be Long and Span Multiple Lines</h3>
+                                    <div class="flex items-center space-x-2 text-xs text-neutral-400">
+                                        <div class="flex items-center">
+                                            <span>1.2M views</span>
+                                        </div>
+                                        <span>•</span>
+                                        <div class="flex items-center">
+                                            <span>2 days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-sm line-clamp-2">Amazing Video Title That Might Be Long</h3>
-                            <p class="text-xs text-neutral-400 mt-1">Channel Name</p>
-                            <p class="text-xs text-neutral-400">1.2M views • 2 days ago</p>
+
+                        <!-- Recommended Video -->
+                        <div class="video-card group hover:bg-neutral-800/30 rounded-xl p-2 transition-colors">
+                            <div class="flex items-start">
+                                <div class="thumbnail-wrapper relative w-40 aspect-video rounded-lg overflow-hidden">
+                                    <img src="https://picsum.photos/402/225" alt="Video thumbnail" class="thumbnail w-full h-full object-cover">
+                                    <span class="duration absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/90 text-xs font-medium rounded">8:45</span>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <div class="play-icon absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-play text-sm text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-1 ml-3">
+                                    <h3 class="title text-sm font-medium line-clamp-2 mb-1.5 group-hover:text-red-500 transition-colors">Another Great Video Title That Could Be Long</h3>
+                                    <div class="flex items-center space-x-2 text-xs text-neutral-400">
+                                        <div class="flex items-center">
+                                            <span>856K views</span>
+                                        </div>
+                                        <span>•</span>
+                                        <div class="flex items-center">
+                                            <span>5 days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recommended Video -->
+                        <div class="video-card group hover:bg-neutral-800/30 rounded-xl p-2 transition-colors">
+                            <div class="flex items-start">
+                                <div class="thumbnail-wrapper relative w-40 aspect-video rounded-lg overflow-hidden">
+                                    <img src="https://picsum.photos/403/225" alt="Video thumbnail" class="thumbnail w-full h-full object-cover">
+                                    <span class="duration absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/90 text-xs font-medium rounded">15:20</span>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <div class="play-icon absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-play text-sm text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-1 ml-3">
+                                    <h3 class="title text-sm font-medium line-clamp-2 mb-1.5 group-hover:text-red-500 transition-colors">Trending Video Title With Long Description</h3>
+                                    <div class="flex items-center space-x-2 text-xs text-neutral-400">
+                                        <div class="flex items-center">
+                                            <span>2.5M views</span>
+                                        </div>
+                                        <span>•</span>
+                                        <div class="flex items-center">
+                                            <span>1 day ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Repeat for more recommended videos -->
                 </div>
             </div>
         </div>
