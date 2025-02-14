@@ -201,12 +201,8 @@
                                     <div id="selectedActors" class="flex flex-wrap gap-2 mt-2">
                                         <!-- Selected actors will be displayed here as tags -->
                                     </div>
-                                    <div id="actorResults" class="absolute z-10 w-full mt-1 bg-neutral-700 border border-neutral-600 rounded-lg shadow-lg hidden text-white">
+                                    <div id="actorResults" class="absolute z-10 w-full mt-1 bg-neutral-700 border border-neutral-600 rounded-lg shadow-lg hidden text-white max-h-48 overflow-y-auto">
                                         <!-- Search results will be displayed here -->
-                                        <div class="p-2 hover:bg-neutral-600 cursor-pointer">John Smith</div>
-                                        <div class="p-2 hover:bg-neutral-600 cursor-pointer">Jane Doe</div>
-                                        <div class="p-2 hover:bg-neutral-600 cursor-pointer">Mike Johnson</div>
-                                        <div class="p-2 hover:bg-neutral-600 cursor-pointer">Sarah Wilson</div>
                                     </div>
                                 </div>
                                 <input type="hidden" name="actors[]" id="selectedActorsInput">
@@ -325,9 +321,22 @@
         const selectedActors = document.getElementById('selectedActors');
         const selectedActorsInput = document.getElementById('selectedActorsInput');
         
+        // Sample actor data - in real app, this would come from an API
+        const actorsList = [
+            { id: 1, name: "John Smith", role: "Actor" },
+            { id: 2, name: "Jane Doe", role: "Director" },
+            { id: 3, name: "Mike Johnson", role: "Producer" },
+            { id: 4, name: "Sarah Wilson", role: "Actor" },
+            { id: 5, name: "David Brown", role: "Actor" },
+            { id: 6, name: "Emma Davis", role: "Director" },
+            { id: 7, name: "Chris Evans", role: "Actor" },
+            { id: 8, name: "Anna White", role: "Producer" }
+        ];
+        
         let selectedActorsList = [];
 
         actorSearch.addEventListener('focus', () => {
+            filterActors(actorSearch.value);
             actorResults.classList.remove('hidden');
         });
 
@@ -338,27 +347,56 @@
         });
 
         actorSearch.addEventListener('input', (e) => {
-            // Here you would typically make an API call to search actors
-            // For now, we'll just show/hide the results div
-            if (e.target.value) {
-                actorResults.classList.remove('hidden');
-            } else {
-                actorResults.classList.add('hidden');
-            }
+            filterActors(e.target.value);
+            actorResults.classList.remove('hidden');
         });
 
-        // Handle actor selection
-        actorResults.querySelectorAll('div').forEach(option => {
-            option.addEventListener('click', () => {
-                const actorName = option.textContent;
-                if (!selectedActorsList.includes(actorName)) {
-                    selectedActorsList.push(actorName);
-                    updateSelectedActors();
-                }
-                actorSearch.value = '';
-                actorResults.classList.add('hidden');
+        function filterActors(searchTerm) {
+            let filtered = actorsList.filter(actor => {
+                // Filter out already selected actors and match search term
+                return !selectedActorsList.includes(actor.name) &&
+                       (actor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        actor.role.toLowerCase().includes(searchTerm.toLowerCase()));
             });
-        });
+
+            // If not searching, only show first 5 results
+            if (!searchTerm) {
+                filtered = filtered.slice(0, 5);
+            }
+
+            // Update the results div
+            actorResults.innerHTML = filtered.length ? filtered.map(actor => `
+                <div class="p-2 hover:bg-neutral-600 cursor-pointer flex items-center justify-between">
+                    <span>${actor.name}</span>
+                    <span class="text-sm text-neutral-400">${actor.role}</span>
+                </div>
+            `).join('') : '<div class="p-2 text-neutral-400">No results found</div>';
+
+            // Add a message showing total results if there are more
+            if (!searchTerm && actorsList.length > 5) {
+                actorResults.innerHTML += `
+                    <div class="p-2 text-sm text-neutral-400 border-t border-neutral-600">
+                        Type to search more actors...
+                    </div>
+                `;
+            }
+
+            // Attach click handlers to new results
+            actorResults.querySelectorAll('div').forEach(option => {
+                if (!option.classList.contains('text-neutral-400')) { // Skip the info messages
+                    option.addEventListener('click', () => {
+                        const actorName = option.querySelector('span').textContent;
+                        if (!selectedActorsList.includes(actorName)) {
+                            selectedActorsList.push(actorName);
+                            updateSelectedActors();
+                        }
+                        actorSearch.value = '';
+                        filterActors('');
+                        actorResults.classList.add('hidden');
+                    });
+                }
+            });
+        }
 
         function updateSelectedActors() {
             selectedActors.innerHTML = selectedActorsList.map(actor => `
@@ -375,6 +413,7 @@
         function removeActor(actor) {
             selectedActorsList = selectedActorsList.filter(a => a !== actor);
             updateSelectedActors();
+            filterActors(actorSearch.value); // Refresh the results list
         }
 
         // Form submission
