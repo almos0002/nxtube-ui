@@ -121,158 +121,185 @@
         </header>
 
         <form id="actorForm" class="w-full">
-            <!-- Basic Information -->
-            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
-                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Actor Information</h3>
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-6">
-                        <div class="flex-shrink-0">
-                            <div class="relative w-32 h-32">
-                                <div id="profilePreview" class="w-full h-full bg-neutral-700 rounded-full overflow-hidden flex items-center justify-center">
-                                    <img id="profileImage" class="w-full h-full object-cover hidden">
-                                    <i id="profilePlaceholder" class="fas fa-user text-4xl text-neutral-500"></i>
-                                </div>
-                                <button type="button" onclick="document.getElementById('profileInput').click()" 
-                                        class="absolute bottom-0 right-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                                    <i class="fas fa-camera text-white"></i>
-                                </button>
-                                <input type="file" id="profileInput" accept="image/*" class="hidden">
-                            </div>
-                        </div>
-                        <div class="flex-grow space-y-4">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-neutral-300 mb-2">First Name</label>
-                                    <input type="text" name="firstName" required
-                                           class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                           placeholder="First name">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-neutral-300 mb-2">Last Name</label>
-                                    <input type="text" name="lastName" required
-                                           class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                           placeholder="Last name">
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <!-- Actor Information -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Actor Information</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-6">
+                            <div class="flex-shrink-0">
+                                <div class="relative w-32 h-32">
+                                    <div id="profilePreview" class="w-full h-full bg-neutral-700 rounded-full overflow-hidden flex items-center justify-center">
+                                        <img id="profileImage" class="w-full h-full object-cover hidden">
+                                        <i id="profilePlaceholder" class="fas fa-user text-4xl text-neutral-500"></i>
+                                    </div>
+                                    <button type="button" onclick="document.getElementById('profileInput').click()" 
+                                            class="absolute bottom-0 right-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                                        <i class="fas fa-camera text-white"></i>
+                                    </button>
+                                    <input type="file" id="profileInput" accept="image/*" class="hidden">
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-neutral-300 mb-2">Stage Name</label>
-                                    <input type="text" name="stageName"
-                                           class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                           placeholder="Stage name (if different)">
+                            <div class="flex-grow space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-neutral-300 mb-2">First Name</label>
+                                        <input type="text" name="firstName" required
+                                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                               placeholder="First name">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-neutral-300 mb-2">Last Name</label>
+                                        <input type="text" name="lastName" required
+                                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                               placeholder="Last name">
+                                    </div>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-neutral-300 mb-2">Type</label>
-                                    <select name="actorType" required
-                                            class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                                        <option value="">Select Type</option>
-                                        <option value="actor">Actor</option>
-                                        <option value="actress">Actress</option>
-                                    </select>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-neutral-300 mb-2">Stage Name</label>
+                                        <input type="text" name="stageName"
+                                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                               placeholder="Stage name (if different)">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-neutral-300 mb-2">Type</label>
+                                        <select name="actorType" required
+                                                class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                            <option value="">Select Type</option>
+                                            <option value="actor">Actor</option>
+                                            <option value="actress">Actress</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-neutral-300 mb-2">Biography</label>
-                        <textarea name="biography" rows="4" required
-                                  class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                  placeholder="Tell us about the actor"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Professional Details -->
-            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
-                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Professional Details</h3>
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-neutral-300 mb-2">Country</label>
-                            <input type="text" name="country" required
-                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                   placeholder="Country">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-neutral-300 mb-2">Years Active</label>
-                            <input type="number" name="yearsActive" min="0" max="100"
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Biography</label>
+                            <textarea name="biography" rows="4" required
+                                      class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                      placeholder="Tell us about the actor"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Details -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Professional Details</h3>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Country</label>
+                                <input type="text" name="country" required
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                       placeholder="Country">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Years Active</label>
+                                <input type="number" name="yearsActive" min="0" max="100"
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                       placeholder="Years of experience">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Languages</label>
+                            <input type="text" name="languages" required
                                    class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                   placeholder="Years of experience">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-neutral-300 mb-2">Languages</label>
-                        <input type="text" name="languages" required
-                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                               placeholder="Languages spoken, separated by commas">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Social Media Links -->
-            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
-                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Social Media Links</h3>
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
-                                <i class="fab fa-twitter text-neutral-400"></i>
-                            </span>
-                            <input type="url" name="twitter" placeholder="Twitter URL"
-                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                        </div>
-                        <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
-                                <i class="fab fa-instagram text-neutral-400"></i>
-                            </span>
-                            <input type="url" name="instagram" placeholder="Instagram URL"
-                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                        </div>
-                        <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
-                                <i class="fab fa-youtube text-neutral-400"></i>
-                            </span>
-                            <input type="url" name="youtube" placeholder="YouTube URL"
-                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                        </div>
-                        <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
-                                <i class="fab fa-twitch text-neutral-400"></i>
-                            </span>
-                            <input type="url" name="twitch" placeholder="Twitch URL"
-                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                   placeholder="Languages spoken, separated by commas">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Additional Settings -->
-            <div class="bg-neutral-800 rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Additional Settings</h3>
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-neutral-300 mb-2">Featured Order</label>
-                        <input type="number" name="order" min="0" value="0"
-                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                               placeholder="Display order in featured section">
+            <div class="grid grid-cols-2 gap-6">
+                <!-- Social Media Links -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Social Media Links</h3>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                    <i class="fab fa-twitter text-neutral-400"></i>
+                                </span>
+                                <input type="url" name="twitter" placeholder="Twitter URL"
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                            </div>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                    <i class="fab fa-instagram text-neutral-400"></i>
+                                </span>
+                                <input type="url" name="instagram" placeholder="Instagram URL"
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                            </div>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                    <i class="fab fa-youtube text-neutral-400"></i>
+                                </span>
+                                <input type="url" name="youtube" placeholder="YouTube URL"
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                            </div>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                    <i class="fab fa-twitch text-neutral-400"></i>
+                                </span>
+                                <input type="url" name="twitch" placeholder="Twitch URL"
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" name="featured"
-                                   class="text-red-500 focus:ring-red-500">
-                            <span class="text-neutral-300">Featured Actor</span>
+                </div>
+
+                <!-- Visibility -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Visibility</h3>
+                    <div class="space-y-3">
+                        <input type="radio" name="visibility" value="public" checked class="hidden" id="visibilityPublic">
+                        <input type="radio" name="visibility" value="unlisted" class="hidden" id="visibilityUnlisted">
+                        <input type="radio" name="visibility" value="private" class="hidden" id="visibilityPrivate">
+                        
+                        <label for="visibilityPublic" class="block p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-neutral-700/70 data-[checked=true]:bg-red-500/10 data-[checked=true]:border-red-500/50 border border-transparent">
+                            <div class="flex items-center">
+                                <i class="fas fa-globe w-5 text-neutral-400"></i>
+                                <div class="ml-3">
+                                    <p class="text-neutral-100">Public</p>
+                                    <p class="text-sm text-neutral-400">Visible to everyone</p>
+                                </div>
+                            </div>
                         </label>
-                    </div>
-                    <div>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" name="active" checked
-                                   class="text-red-500 focus:ring-red-500">
-                            <span class="text-neutral-300">Active</span>
+                        
+                        <label for="visibilityPrivate" class="block p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-neutral-700/70 data-[checked=true]:bg-red-500/10 data-[checked=true]:border-red-500/50 border border-transparent">
+                            <div class="flex items-center">
+                                <i class="fas fa-lock w-5 text-neutral-400"></i>
+                                <div class="ml-3">
+                                    <p class="text-neutral-100">Private</p>
+                                    <p class="text-sm text-neutral-400">Only visible to admins</p>
+                                </div>
+                            </div>
                         </label>
                     </div>
                 </div>
             </div>
         </form>
+
+        <script>
+            // Handle visibility selection highlighting
+            const visibilityInputs = document.querySelectorAll('input[name="visibility"]');
+            const visibilityLabels = document.querySelectorAll('label[for^="visibility"]');
+            
+            function updateVisibilityStyles() {
+                visibilityLabels.forEach(label => {
+                    const input = document.getElementById(label.getAttribute('for'));
+                    label.setAttribute('data-checked', input.checked);
+                });
+            }
+            
+            visibilityInputs.forEach(input => {
+                input.addEventListener('change', updateVisibilityStyles);
+            });
+            
+            // Initialize styles
+            updateVisibilityStyles();
+        </script>
     </div>
 
     <script>
