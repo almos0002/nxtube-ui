@@ -120,7 +120,7 @@
             </button>
         </header>
 
-        <form id="categoryForm" class="max-w-3xl">
+        <form id="categoryForm" class="w-full">
             <!-- Basic Information -->
             <div class="bg-neutral-800 rounded-xl p-6 mb-6">
                 <h3 class="text-lg font-semibold text-neutral-100 mb-4">Basic Information</h3>
@@ -139,93 +139,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Icon Selection -->
-            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
-                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Category Icon</h3>
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-neutral-300 mb-2">Icon Style</label>
-                            <select id="iconStyle" name="iconStyle"
-                                    class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                                <option value="solid">Solid</option>
-                                <option value="regular">Regular</option>
-                                <option value="brands">Brands</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-neutral-300 mb-2">Icon Color</label>
-                            <input type="color" name="iconColor" value="#ef4444"
-                                   class="w-full h-10 bg-neutral-700 border border-neutral-600 rounded-lg px-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-neutral-300 mb-2">Search Icons</label>
-                        <div class="relative">
-                            <input type="text" id="iconSearch" placeholder="Search icons..."
-                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"></i>
-                        </div>
-                    </div>
-
-                    <div id="iconGrid" class="grid grid-cols-6 gap-4 mt-4 max-h-64 overflow-y-auto p-2">
-                        <button type="button" class="icon-btn p-4 bg-neutral-700 rounded-lg hover:bg-neutral-600 transition-colors">
-                            <i class="fas fa-gamepad text-2xl"></i>
-                        </button>
-                        <button type="button" class="icon-btn p-4 bg-neutral-700 rounded-lg hover:bg-neutral-600 transition-colors">
-                            <i class="fas fa-music text-2xl"></i>
-                        </button>
-                        <button type="button" class="icon-btn p-4 bg-neutral-700 rounded-lg hover:bg-neutral-600 transition-colors">
-                            <i class="fas fa-film text-2xl"></i>
-                        </button>
-                        <button type="button" class="icon-btn p-4 bg-neutral-700 rounded-lg hover:bg-neutral-600 transition-colors">
-                            <i class="fas fa-graduation-cap text-2xl"></i>
-                        </button>
-                        <button type="button" class="icon-btn p-4 bg-neutral-700 rounded-lg hover:bg-neutral-600 transition-colors">
-                            <i class="fas fa-code text-2xl"></i>
-                        </button>
-                        <button type="button" class="icon-btn p-4 bg-neutral-700 rounded-lg hover:bg-neutral-600 transition-colors">
-                            <i class="fas fa-palette text-2xl"></i>
-                        </button>
-                    </div>
-
-                    <div class="flex items-center space-x-4 mt-4">
-                        <div class="flex-shrink-0 w-16 h-16 bg-neutral-700 rounded-xl flex items-center justify-center">
-                            <i id="selectedIcon" class="fas fa-gamepad text-3xl" style="color: #ef4444"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-neutral-300">Selected Icon</p>
-                            <p id="selectedIconName" class="text-sm text-neutral-400">fa-gamepad</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Display Settings -->
-            <div class="bg-neutral-800 rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Display Settings</h3>
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-neutral-300 mb-2">Display Order</label>
-                        <input type="number" name="order" min="0" value="0"
-                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                    </div>
-                    <div>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" name="featured" class="text-red-500 focus:ring-red-500">
-                            <span class="text-neutral-300">Featured Category</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" name="active" checked class="text-red-500 focus:ring-red-500">
-                            <span class="text-neutral-300">Active</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
         </form>
     </div>
 
@@ -235,55 +148,6 @@
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('-translate-x-full');
         }
-
-        // Icon selection
-        const iconButtons = document.querySelectorAll('.icon-btn');
-        const selectedIcon = document.getElementById('selectedIcon');
-        const selectedIconName = document.getElementById('selectedIconName');
-        const iconColor = document.querySelector('input[name="iconColor"]');
-        const iconStyle = document.getElementById('iconStyle');
-        const iconSearch = document.getElementById('iconSearch');
-        const iconGrid = document.getElementById('iconGrid');
-
-        // Common icons for categories
-        const commonIcons = [
-            'gamepad', 'music', 'film', 'graduation-cap', 'code', 'palette',
-            'camera', 'book', 'chart-line', 'heart', 'star', 'trophy',
-            'laptop', 'microphone', 'basketball', 'brush', 'dumbbell', 'utensils'
-        ];
-
-        // Update icon grid
-        function updateIconGrid(searchTerm = '') {
-            iconGrid.innerHTML = '';
-            const style = iconStyle.value;
-            const filteredIcons = commonIcons.filter(icon => 
-                icon.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-
-            filteredIcons.forEach(icon => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'icon-btn p-4 bg-neutral-700 rounded-lg hover:bg-neutral-600 transition-colors';
-                btn.innerHTML = `<i class="${style} fa-${icon} text-2xl" style="color: ${iconColor.value}"></i>`;
-                btn.onclick = () => {
-                    selectedIcon.className = `${style} fa-${icon} text-3xl`;
-                    selectedIcon.style.color = iconColor.value;
-                    selectedIconName.textContent = `fa-${icon}`;
-                };
-                iconGrid.appendChild(btn);
-            });
-        }
-
-        // Event listeners
-        iconStyle.addEventListener('change', () => updateIconGrid(iconSearch.value));
-        iconColor.addEventListener('input', (e) => {
-            selectedIcon.style.color = e.target.value;
-            updateIconGrid(iconSearch.value);
-        });
-        iconSearch.addEventListener('input', (e) => updateIconGrid(e.target.value));
-
-        // Initialize icon grid
-        updateIconGrid();
 
         // Form submission
         const categoryForm = document.getElementById('categoryForm');
