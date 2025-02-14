@@ -120,8 +120,9 @@
             </button>
         </header>
 
-        <form id="actorForm" class="w-full">
-            <div class="grid grid-cols-2 gap-6 mb-6">
+        <form id="actorForm" class="w-full space-y-6">
+            <!-- Actor Information and Banner Upload -->
+            <div class="grid grid-cols-2 gap-6">
                 <!-- Actor Information -->
                 <div class="bg-neutral-800 rounded-xl p-6">
                     <h3 class="text-lg font-semibold text-neutral-100 mb-4">Actor Information</h3>
@@ -155,22 +156,11 @@
                                                placeholder="Last name">
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-neutral-300 mb-2">Stage Name</label>
-                                        <input type="text" name="stageName"
-                                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                               placeholder="Stage name (if different)">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-neutral-300 mb-2">Type</label>
-                                        <select name="actorType" required
-                                                class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                                            <option value="">Select Type</option>
-                                            <option value="actor">Actor</option>
-                                            <option value="actress">Actress</option>
-                                        </select>
-                                    </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-300 mb-2">Stage Name</label>
+                                    <input type="text" name="stageName"
+                                           class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                           placeholder="Stage name (if different)">
                                 </div>
                             </div>
                         </div>
@@ -178,83 +168,76 @@
                             <label class="block text-sm font-medium text-neutral-300 mb-2">Biography</label>
                             <textarea name="biography" rows="4" required
                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                      placeholder="Tell us about the actor"></textarea>
+                                      placeholder="Write a brief biography..."></textarea>
                         </div>
                     </div>
                 </div>
 
+                <!-- Banner Upload -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Banner Image</h3>
+                    <div class="space-y-4">
+                        <div class="relative w-full h-48 bg-neutral-700 rounded-lg overflow-hidden">
+                            <img id="bannerImage" class="w-full h-full object-cover hidden">
+                            <div id="bannerPlaceholder" class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-image text-4xl text-neutral-500"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-neutral-400">Recommended size: 1920x400 pixels. Max file size: 2MB</p>
+                        <div class="flex justify-center">
+                            <button type="button" onclick="document.getElementById('bannerInput').click()"
+                                    class="text-white px-6 py-2 bg-red-500 rounded-lg flex items-center space-x-2 hover:bg-red-600 transition-colors">
+                                <i class="fas fa-upload mr-2"></i>
+                                <span>Upload Banner</span>
+                            </button>
+                            <input type="file" id="bannerInput" accept="image/*" class="hidden">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Details and Visibility -->
+            <div class="grid grid-cols-2 gap-6">
                 <!-- Professional Details -->
                 <div class="bg-neutral-800 rounded-xl p-6">
                     <h3 class="text-lg font-semibold text-neutral-100 mb-4">Professional Details</h3>
                     <div class="space-y-4">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-neutral-300 mb-2">Country</label>
-                                <input type="text" name="country" required
-                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                       placeholder="Country">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Type</label>
+                                <select name="actorType" required
+                                        class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                    <option value="">Select Type</option>
+                                    <option value="actor">Actor</option>
+                                    <option value="actress">Actress</option>
+                                </select>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-neutral-300 mb-2">Years Active</label>
-                                <input type="number" name="yearsActive" min="0" max="100"
-                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                       placeholder="Years of experience">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Date of Birth</label>
+                                <input type="date" name="dateOfBirth"
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-neutral-300 mb-2">Languages</label>
-                            <input type="text" name="languages" required
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Specialties</label>
+                            <input type="text" name="specialties"
                                    class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
-                                   placeholder="Languages spoken, separated by commas">
+                                   placeholder="e.g., Action, Comedy, Drama (comma separated)">
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-6">
-                <!-- Social Media Links -->
-                <div class="bg-neutral-800 rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Social Media Links</h3>
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="relative">
-                                <span class="absolute left-3 top-1/2 -translate-y-1/2">
-                                    <i class="fab fa-twitter text-neutral-400"></i>
-                                </span>
-                                <input type="url" name="twitter" placeholder="Twitter URL"
-                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                            </div>
-                            <div class="relative">
-                                <span class="absolute left-3 top-1/2 -translate-y-1/2">
-                                    <i class="fab fa-instagram text-neutral-400"></i>
-                                </span>
-                                <input type="url" name="instagram" placeholder="Instagram URL"
-                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                            </div>
-                            <div class="relative">
-                                <span class="absolute left-3 top-1/2 -translate-y-1/2">
-                                    <i class="fab fa-youtube text-neutral-400"></i>
-                                </span>
-                                <input type="url" name="youtube" placeholder="YouTube URL"
-                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                            </div>
-                            <div class="relative">
-                                <span class="absolute left-3 top-1/2 -translate-y-1/2">
-                                    <i class="fab fa-twitch text-neutral-400"></i>
-                                </span>
-                                <input type="url" name="twitch" placeholder="Twitch URL"
-                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
-                            </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Languages</label>
+                            <input type="text" name="languages"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                   placeholder="e.g., English, Spanish (comma separated)">
                         </div>
                     </div>
                 </div>
 
-                <!-- Visibility -->
+                <!-- Visibility Settings -->
                 <div class="bg-neutral-800 rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Visibility</h3>
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Visibility Settings</h3>
                     <div class="space-y-3">
                         <input type="radio" name="visibility" value="public" checked class="hidden" id="visibilityPublic">
-                        <input type="radio" name="visibility" value="unlisted" class="hidden" id="visibilityUnlisted">
                         <input type="radio" name="visibility" value="private" class="hidden" id="visibilityPrivate">
                         
                         <label for="visibilityPublic" class="block p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-neutral-700/70 data-[checked=true]:bg-red-500/10 data-[checked=true]:border-red-500/50 border border-transparent">
@@ -279,6 +262,45 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Social Media Links -->
+            <div class="bg-neutral-800 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Social Media Links</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">
+                            <i class="fab fa-instagram text-neutral-400 mr-2"></i>Instagram
+                        </label>
+                        <input type="url" name="instagram"
+                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                               placeholder="https://instagram.com/username">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">
+                            <i class="fab fa-twitter text-neutral-400 mr-2"></i>Twitter
+                        </label>
+                        <input type="url" name="twitter"
+                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                               placeholder="https://twitter.com/username">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">
+                            <i class="fab fa-facebook text-neutral-400 mr-2"></i>Facebook
+                        </label>
+                        <input type="url" name="facebook"
+                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                               placeholder="https://facebook.com/username">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">
+                            <i class="fas fa-globe text-neutral-400 mr-2"></i>Website
+                        </label>
+                        <input type="url" name="website"
+                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                               placeholder="https://example.com">
+                    </div>
+                </div>
+            </div>
         </form>
 
         <script>
@@ -297,7 +319,43 @@
                 input.addEventListener('change', updateVisibilityStyles);
             });
             
-            // Initialize styles
+            // Profile image handling
+            const profileInput = document.getElementById('profileInput');
+            const profileImage = document.getElementById('profileImage');
+            const profilePlaceholder = document.getElementById('profilePlaceholder');
+            
+            profileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        profileImage.src = e.target.result;
+                        profileImage.classList.remove('hidden');
+                        profilePlaceholder.classList.add('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Banner image handling
+            const bannerInput = document.getElementById('bannerInput');
+            const bannerImage = document.getElementById('bannerImage');
+            const bannerPlaceholder = document.getElementById('bannerPlaceholder');
+            
+            bannerInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        bannerImage.src = e.target.result;
+                        bannerImage.classList.remove('hidden');
+                        bannerPlaceholder.classList.add('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Initialize visibility styles
             updateVisibilityStyles();
         </script>
     </div>
@@ -308,24 +366,6 @@
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('-translate-x-full');
         }
-
-        // Profile image handling
-        const profileInput = document.getElementById('profileInput');
-        const profileImage = document.getElementById('profileImage');
-        const profilePlaceholder = document.getElementById('profilePlaceholder');
-
-        profileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    profileImage.src = e.target.result;
-                    profileImage.classList.remove('hidden');
-                    profilePlaceholder.classList.add('hidden');
-                };
-                reader.readAsDataURL(file);
-            }
-        });
 
         // Form submission
         const actorForm = document.getElementById('actorForm');
