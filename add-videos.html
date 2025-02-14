@@ -157,6 +157,17 @@
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Channel</label>
+                                <select name="channel" required
+                                        class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
+                                    <option value="">Select Channel</option>
+                                    <option value="code-masters">Code Masters</option>
+                                    <option value="gaming-hub">Gaming Hub</option>
+                                    <option value="music-academy">Music Academy</option>
+                                    <option value="tech-talks">Tech Talks</option>
+                                </select>
+                            </div>
+                            <div>
                                 <label class="block text-sm font-medium text-neutral-300 mb-2">Category</label>
                                 <select name="category" required
                                         class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
@@ -168,6 +179,8 @@
                                     <option value="tech">Technology</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-neutral-300 mb-2">Language</label>
                                 <select name="language" required
@@ -179,6 +192,24 @@
                                     <option value="de">German</option>
                                     <option value="hi">Hindi</option>
                                 </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Actors</label>
+                                <div class="relative">
+                                    <input type="text" id="actorSearch" placeholder="Search actors..."
+                                           class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
+                                    <div id="selectedActors" class="flex flex-wrap gap-2 mt-2">
+                                        <!-- Selected actors will be displayed here as tags -->
+                                    </div>
+                                    <div id="actorResults" class="absolute z-10 w-full mt-1 bg-neutral-700 border border-neutral-600 rounded-lg shadow-lg hidden text-white">
+                                        <!-- Search results will be displayed here -->
+                                        <div class="p-2 hover:bg-neutral-600 cursor-pointer">John Smith</div>
+                                        <div class="p-2 hover:bg-neutral-600 cursor-pointer">Jane Doe</div>
+                                        <div class="p-2 hover:bg-neutral-600 cursor-pointer">Mike Johnson</div>
+                                        <div class="p-2 hover:bg-neutral-600 cursor-pointer">Sarah Wilson</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="actors[]" id="selectedActorsInput">
                             </div>
                         </div>
                         <div>
@@ -287,6 +318,64 @@
                 reader.readAsDataURL(file);
             }
         });
+
+        // Actor search functionality
+        const actorSearch = document.getElementById('actorSearch');
+        const actorResults = document.getElementById('actorResults');
+        const selectedActors = document.getElementById('selectedActors');
+        const selectedActorsInput = document.getElementById('selectedActorsInput');
+        
+        let selectedActorsList = [];
+
+        actorSearch.addEventListener('focus', () => {
+            actorResults.classList.remove('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!actorSearch.contains(e.target) && !actorResults.contains(e.target)) {
+                actorResults.classList.add('hidden');
+            }
+        });
+
+        actorSearch.addEventListener('input', (e) => {
+            // Here you would typically make an API call to search actors
+            // For now, we'll just show/hide the results div
+            if (e.target.value) {
+                actorResults.classList.remove('hidden');
+            } else {
+                actorResults.classList.add('hidden');
+            }
+        });
+
+        // Handle actor selection
+        actorResults.querySelectorAll('div').forEach(option => {
+            option.addEventListener('click', () => {
+                const actorName = option.textContent;
+                if (!selectedActorsList.includes(actorName)) {
+                    selectedActorsList.push(actorName);
+                    updateSelectedActors();
+                }
+                actorSearch.value = '';
+                actorResults.classList.add('hidden');
+            });
+        });
+
+        function updateSelectedActors() {
+            selectedActors.innerHTML = selectedActorsList.map(actor => `
+                <div class="flex items-center gap-1 bg-neutral-600 px-2 py-1 rounded-lg">
+                    <span class="text-sm text-neutral-100">${actor}</span>
+                    <button type="button" onclick="removeActor('${actor}')" class="text-neutral-400 hover:text-red-400">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+            selectedActorsInput.value = JSON.stringify(selectedActorsList);
+        }
+
+        function removeActor(actor) {
+            selectedActorsList = selectedActorsList.filter(a => a !== actor);
+            updateSelectedActors();
+        }
 
         // Form submission
         const videoForm = document.getElementById('videoForm');
