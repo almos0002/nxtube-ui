@@ -121,14 +121,23 @@
             </button>
         </header>
 
-        <form id="videoForm" class="grid grid-cols-3 gap-8">
+        <form id="videoForm" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Main Content Column -->
-            <div class="col-span-3 space-y-6">
+            <div class="lg:col-span-2 space-y-6">
                 <!-- Video Upload Section -->
                 <div class="bg-neutral-800 rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Video Upload</h3>
-                    <div id="dropZone" class="border-2 border-dashed border-neutral-600 rounded-xl p-8 text-center hover:border-red-500 transition-colors">
-                        <input type="url" name="videoLink" placeholder="Enter video URL" class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Video Link</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Video URL</label>
+                            <input type="url" name="videoLink" required placeholder="Enter video URL (e.g., https://example.com/video.mp4)" 
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
+                            <p class="mt-1 text-sm text-neutral-500">Enter a direct link to your video file</p>
+                        </div>
+                        <!-- Video Preview -->
+                        <div id="videoPreview" class="hidden">
+                            <video controls class="w-full rounded-lg bg-neutral-900"></video>
+                        </div>
                     </div>
                 </div>
 
@@ -139,18 +148,18 @@
                         <div>
                             <label class="block text-sm font-medium text-neutral-300 mb-2">Title</label>
                             <input type="text" name="title" required
-                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-neutral-300 mb-2">Description</label>
                             <textarea name="description" rows="4" required
-                                      class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"></textarea>
+                                      class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500"></textarea>
                         </div>
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-neutral-300 mb-2">Category</label>
                                 <select name="category" required
-                                        class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                        class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
                                     <option value="">Select Category</option>
                                     <option value="entertainment">Entertainment</option>
                                     <option value="education">Education</option>
@@ -162,7 +171,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-neutral-300 mb-2">Language</label>
                                 <select name="language" required
-                                        class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                        class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
                                     <option value="">Select Language</option>
                                     <option value="en">English</option>
                                     <option value="es">Spanish</option>
@@ -175,54 +184,61 @@
                         <div>
                             <label class="block text-sm font-medium text-neutral-300 mb-2">Tags</label>
                             <input type="text" name="tags" placeholder="Add tags separated by commas"
-                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
+                            <p class="mt-1 text-sm text-neutral-500">Add up to 10 tags to help viewers find your video</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Sidebar Column -->
-            <div class="col-span-1 space-y-6">
+            <div class="space-y-6">
                 <!-- Thumbnail Section -->
                 <div class="bg-neutral-800 rounded-xl p-6">
                     <h3 class="text-lg font-semibold text-neutral-100 mb-4">Thumbnail</h3>
-                    <div id="thumbnailPreview" class="aspect-video bg-neutral-700 rounded-lg mb-4 overflow-hidden">
-                        <img id="thumbnailImage" class="w-full h-full object-cover hidden">
-                        <div id="thumbnailPlaceholder" class="w-full h-full flex items-center justify-center">
-                            <i class="fas fa-image text-4xl text-neutral-500"></i>
+                    <div id="thumbnailUpload" class="space-y-4">
+                        <div id="thumbnailPreview" class="aspect-video bg-neutral-700 rounded-lg overflow-hidden">
+                            <img id="thumbnailImage" class="w-full h-full object-cover hidden">
+                            <div id="thumbnailPlaceholder" class="w-full h-full flex items-center justify-center">
+                                <i class="fas fa-image text-4xl text-neutral-500"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button type="button" onclick="generateThumbnail()" 
-                                class="flex-1 px-4 py-2 bg-neutral-700 hover:bg-neutral-600 rounded-lg transition-colors">
-                            Generate
-                        </button>
-                        <button type="button" onclick="document.getElementById('thumbnailInput').click()" 
-                                class="flex-1 px-4 py-2 bg-neutral-700 hover:bg-neutral-600 rounded-lg transition-colors">
-                            Upload
-                        </button>
                         <input type="file" id="thumbnailInput" accept="image/*" class="hidden">
+                        <button type="button" onclick="document.getElementById('thumbnailInput').click()"
+                                class="w-full px-4 py-2 bg-neutral-700 hover:bg-neutral-600 text-neutral-100 rounded-lg transition-colors">
+                            Upload Thumbnail
+                        </button>
+                        <p class="text-sm text-neutral-500">Recommended: 1280x720px JPG, PNG</p>
                     </div>
                 </div>
 
-                <!-- Privacy Settings -->
+                <!-- Visibility Section -->
                 <div class="bg-neutral-800 rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Privacy Settings</h3>
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Visibility</h3>
                     <div class="space-y-4">
-                        <label class="flex items-center space-x-3">
-                            <input type="radio" name="privacy" value="public" checked
+                        <label class="flex items-center space-x-3 p-3 bg-neutral-700/50 rounded-lg cursor-pointer">
+                            <input type="radio" name="visibility" value="public" checked
                                    class="text-red-500 focus:ring-red-500">
-                            <span class="text-neutral-300">Public</span>
+                            <div>
+                                <p class="text-neutral-100">Public</p>
+                                <p class="text-sm text-neutral-400">Everyone can watch your video</p>
+                            </div>
                         </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="radio" name="privacy" value="unlisted"
+                        <label class="flex items-center space-x-3 p-3 bg-neutral-700/50 rounded-lg cursor-pointer">
+                            <input type="radio" name="visibility" value="unlisted"
                                    class="text-red-500 focus:ring-red-500">
-                            <span class="text-neutral-300">Unlisted</span>
+                            <div>
+                                <p class="text-neutral-100">Unlisted</p>
+                                <p class="text-sm text-neutral-400">Anyone with the link can watch</p>
+                            </div>
                         </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="radio" name="privacy" value="private"
+                        <label class="flex items-center space-x-3 p-3 bg-neutral-700/50 rounded-lg cursor-pointer">
+                            <input type="radio" name="visibility" value="private"
                                    class="text-red-500 focus:ring-red-500">
-                            <span class="text-neutral-300">Private</span>
+                            <div>
+                                <p class="text-neutral-100">Private</p>
+                                <p class="text-sm text-neutral-400">Only you can watch</p>
+                            </div>
                         </label>
                     </div>
                 </div>
@@ -231,11 +247,28 @@
     </div>
 
     <script>
-        // Sidebar toggle function
+        // Sidebar toggle
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
+            const menuButton = document.getElementById('menuButton');
             sidebar.classList.toggle('-translate-x-full');
+            menuButton.classList.toggle('rotate-180');
         }
+
+        // Video link handling
+        const videoLinkInput = document.querySelector('input[name="videoLink"]');
+        const videoPreview = document.getElementById('videoPreview');
+        const videoPlayer = videoPreview.querySelector('video');
+
+        videoLinkInput.addEventListener('change', (e) => {
+            const url = e.target.value.trim();
+            if (url) {
+                videoPlayer.src = url;
+                videoPreview.classList.remove('hidden');
+            } else {
+                videoPreview.classList.add('hidden');
+            }
+        });
 
         // Thumbnail handling
         const thumbnailInput = document.getElementById('thumbnailInput');
@@ -255,39 +288,12 @@
             }
         });
 
-        async function generateThumbnail() {
-            const video = document.createElement('video');
-            const file = document.querySelector('input[name="videoLink"]').value;
-            
-            if (!file) {
-                alert('Please enter a video URL first');
-                return;
-            }
-
-            video.src = file;
-            video.addEventListener('loadeddata', () => {
-                video.currentTime = 1; // Generate thumbnail from 1 second mark
-            });
-
-            video.addEventListener('seeked', () => {
-                const canvas = document.createElement('canvas');
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                
-                thumbnailImage.src = canvas.toDataURL();
-                thumbnailImage.classList.remove('hidden');
-                thumbnailPlaceholder.classList.add('hidden');
-            });
-        }
-
         // Form submission
         const videoForm = document.getElementById('videoForm');
         videoForm.addEventListener('submit', (e) => {
             e.preventDefault();
             // Add your form submission logic here
-            alert('Video uploaded successfully!');
+            console.log('Form submitted');
         });
     </script>
 </body>
