@@ -128,11 +128,18 @@
                 <div class="bg-neutral-800 rounded-xl p-6">
                     <h3 class="text-lg font-semibold text-neutral-100 mb-4">Video Link</h3>
                     <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-neutral-300 mb-2">Video URL</label>
-                            <input type="url" name="videoLink" required placeholder="Enter video URL (e.g., https://example.com/video.mp4)" 
-                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
-                            <p class="mt-1 text-sm text-neutral-500">Enter a direct link to your video file</p>
+                        <div class="flex gap-4">
+                            <div class="flex-grow">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Video URL</label>
+                                <input type="url" name="videoLink" required placeholder="Enter video URL (e.g., https://example.com/video.mp4)" 
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
+                                <p class="mt-1 text-sm text-neutral-500">Enter a direct link to your video file</p>
+                            </div>
+                            <div class="w-32">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Duration</label>
+                                <input type="text" name="duration" placeholder="HH:MM:SS" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$" required
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
+                            </div>
                         </div>
                         <!-- Video Preview -->
                         <div id="videoPreview" class="hidden">
@@ -180,16 +187,16 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-neutral-300 mb-2">Language</label>
                                 <select name="language" required
                                         class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
-                                    <option value="">Select Language</option>
                                     <option value="en">English</option>
                                     <option value="es">Spanish</option>
                                     <option value="fr">French</option>
                                     <option value="de">German</option>
+                                    <option value="it">Italian</option>
                                     <option value="hi">Hindi</option>
                                 </select>
                             </div>
@@ -198,12 +205,10 @@
                                 <div class="relative">
                                     <input type="text" id="actorSearch" placeholder="Search actors..."
                                            class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500">
-                                    <div id="selectedActors" class="flex flex-wrap gap-2 mt-2">
-                                        <!-- Selected actors will be displayed here as tags -->
+                                    <div id="actorResults" class="hidden absolute z-10 w-full mt-1 bg-neutral-700 border border-neutral-600 rounded-lg shadow-lg max-h-48 overflow-y-auto">
                                     </div>
-                                    <div id="actorResults" class="absolute z-10 w-full mt-1 bg-neutral-700 border border-neutral-600 rounded-lg shadow-lg hidden text-white max-h-48 overflow-y-auto">
-                                        <!-- Search results will be displayed here -->
-                                    </div>
+                                </div>
+                                <div id="selectedActors" class="mt-2 flex flex-wrap gap-2">
                                 </div>
                                 <input type="hidden" name="actors[]" id="selectedActorsInput">
                             </div>
