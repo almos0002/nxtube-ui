@@ -1,0 +1,222 @@
+VideoFlex - Laravel Application Requirements
+=====================================
+
+Models
+------
+1. User
+   - Attributes: id, first_name, last_name, email, password, avatar, role, remember_token, timestamps
+   - Relationships:
+     * hasMany videos
+     * hasMany comments
+     * hasMany likes
+     * hasOne profile
+
+2. Video
+   - Attributes: id, title, description, thumbnail, url, duration, views, status, user_id, category_id, channel_id, timestamps
+   - Relationships:
+     * belongsTo user
+     * belongsTo category
+     * belongsTo channel
+     * hasMany comments
+     * hasMany likes
+     * belongsToMany actors
+
+3. Category
+   - Attributes: id, name, icon, slug, status, timestamps
+   - Relationships:
+     * hasMany videos
+
+4. Actor
+   - Attributes: id, name, bio, profile_image, social_media_links, status, timestamps
+   - Relationships:
+     * belongsToMany videos
+
+5. Comment
+   - Attributes: id, content, user_id, video_id, parent_id, timestamps
+   - Relationships:
+     * belongsTo user
+     * belongsTo video
+     * hasMany replies (self-referential)
+
+6. Like
+   - Attributes: id, user_id, video_id, type, timestamps
+   - Relationships:
+     * belongsTo user
+     * belongsTo video
+
+7. Profile
+   - Attributes: id, user_id, bio, location, website, social_media_links, notification_preferences, theme_preferences, timestamps
+   - Relationships:
+     * belongsTo user
+
+8. Channel
+   - Attributes: id, name, description, banner_image, profile_image, user_id, verified_status, subscribers_count, custom_url, social_links, settings, timestamps
+   - Relationships:
+     * belongsTo user
+     * hasMany videos
+     * hasMany subscribers
+     * hasMany playlists
+
+9. Playlist
+   - Attributes: id, title, description, channel_id, privacy_status, timestamps
+   - Relationships:
+     * belongsTo channel
+     * belongsToMany videos
+
+10. Subscription
+    - Attributes: id, user_id, channel_id, notification_status, timestamps
+    - Relationships:
+      * belongsTo user
+      * belongsTo channel
+
+Controllers
+----------
+1. AuthController
+   - login()
+   - register()
+   - logout()
+   - forgotPassword()
+   - resetPassword()
+
+2. VideoController
+   - index()
+   - show()
+   - create()
+   - store()
+   - edit()
+   - update()
+   - destroy()
+   - updateViews()
+
+3. CategoryController
+   - index()
+   - show()
+   - create()
+   - store()
+   - edit()
+   - update()
+   - destroy()
+
+4. ActorController
+   - index()
+   - show()
+   - create()
+   - store()
+   - edit()
+   - update()
+   - destroy()
+
+5. CommentController
+   - store()
+   - update()
+   - destroy()
+   - reply()
+
+6. LikeController
+   - toggle()
+   - count()
+
+7. Admin Controllers
+   - AdminDashboardController
+   - AdminVideoController
+   - AdminCategoryController
+   - AdminActorController
+   - AdminUserController
+   - AdminSettingsController
+   - AdminChannelController
+
+8. ProfileController
+   - show()
+   - update()
+   - updateNotifications()
+   - updatePassword()
+
+9. ChannelController
+   - index()
+   - show()
+   - create()
+   - store()
+   - edit()
+   - update()
+   - updateSettings()
+   - updateBanner()
+   - updateProfileImage()
+   - manageSubscriptions()
+
+10. PlaylistController
+    - index()
+    - show()
+    - create()
+    - store()
+    - edit()
+    - update()
+    - destroy()
+    - addVideo()
+    - removeVideo()
+
+11. SubscriptionController
+    - subscribe()
+    - unsubscribe()
+    - updateNotifications()
+    - getSubscribers()
+    - getSubscriptions()
+
+Required Packages
+---------------
+1. Laravel Framework
+2. Laravel Sanctum (API Authentication)
+3. Laravel Socialite (Social Authentication)
+4. Intervention/Image (Image Processing)
+5. FFmpeg (Video Processing)
+6. Laravel Scout (Search)
+7. Spatie/Laravel-Permission (Role Management)
+
+Database Tables
+-------------
+1. users
+2. videos
+3. categories
+4. actors
+5. comments
+6. likes
+7. profiles
+8. channels
+9. playlists
+10. playlist_video
+11. subscriptions
+12. video_actor (pivot)
+13. password_resets
+14. failed_jobs
+15. personal_access_tokens
+
+Features
+--------
+1. User Authentication & Authorization
+2. Video Upload & Management
+3. Category Management
+4. Actor Management
+5. Comments & Replies
+6. Like/Dislike System
+7. View Count Tracking
+8. Search Functionality
+9. Admin Dashboard
+10. User Profiles
+11. Channel Management
+    - Channel customization
+    - Banner and profile image management
+    - Custom URL handling
+    - Subscriber management
+    - Channel analytics
+12. Playlist Management
+    - Create and manage playlists
+    - Add/remove videos
+    - Privacy settings
+13. Subscription System
+    - Subscribe/unsubscribe functionality
+    - Notification preferences
+    - Subscriber count tracking
+14. Responsive Design
+15. CDN Integration
+16. Email Notifications
+
+Note: This requirements document outlines the core structure of the VideoFlex application. Additional features and relationships can be added as needed during development.

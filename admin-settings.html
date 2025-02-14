@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings - Admin Panel</title>
+    <title>System Settings - VideoFlex</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -16,7 +16,6 @@
             background: rgba(255, 255, 255, 0.1);
             transform: translateX(5px);
         }
-        /* Added styles for scrollable sidebar */
         #sidebar {
             display: flex;
             flex-direction: column;
@@ -40,176 +39,207 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
         }
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: rgb(239, 68, 68);
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+        }
     </style>
 </head>
-<body class="bg-neutral-900 text-neutral-100">
-    <div class="flex">
-        <!-- Sidebar -->
-        <div class="fixed inset-y-0 left-0 w-64 bg-neutral-800 text-neutral-100 transition-transform duration-300 transform md:translate-x-0 shadow-2xl" id="sidebar">
-            <div class="p-6 border-b border-neutral-700/30">
-                <div class="flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-play-circle text-white text-xl"></i>
-                    </div>
-                    <h1 class="text-2xl font-bold">VideoFlex</h1>
+<body class="bg-neutral-900">
+    <!-- Sidebar -->
+    <div class="fixed inset-y-0 left-0 w-64 bg-neutral-800 text-neutral-100 transition-transform duration-300 transform md:translate-x-0 shadow-2xl" id="sidebar">
+        <div class="p-6 border-b border-neutral-700/30">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-play-circle text-white text-xl"></i>
                 </div>
-            </div>
-            <div class="sidebar-content">
-                <div class="mt-6 px-4">
-                    <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-4 px-4">Content Management</p>
-                    <nav class="space-y-2">
-                        <a href="admin-dashboard.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
-                            <i class="fas fa-home text-lg w-8"></i>
-                            <span>Dashboard</span>
-                        </a>
-                        <a href="admin-videos.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
-                            <i class="fas fa-video text-lg w-8"></i>
-                            <span>Videos</span>
-                        </a>
-                        <a href="admin-categories.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
-                            <i class="fas fa-list text-lg w-8"></i>
-                            <span>Categories</span>
-                        </a>
-                        <a href="admin-actors.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
-                            <i class="fas fa-user-tie text-lg w-8"></i>
-                            <span>Actors</span>
-                        </a>
-                        <div class="nav-item px-4 py-3 flex items-center cursor-pointer">
-                            <i class="fas fa-users text-lg w-8"></i>
-                            <span>Users</span>
-                        </div>
-                    </nav>
-
-                    <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-4 mt-8 px-4">System</p>
-                    <nav class="space-y-2">
-                        <a href="admin-settings.html" class="nav-item px-4 py-3 flex items-center cursor-pointer bg-neutral-700/30">
-                            <i class="fas fa-cog text-lg w-8"></i>
-                            <span>Settings</span>
-                        </a>
-                        <a href="admin-profile.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
-                            <i class="fas fa-user-circle text-lg w-8"></i>
-                            <span>Profile</span>
-                        </a>
-                        <div class="nav-item px-4 py-3 flex items-center cursor-pointer text-red-400">
-                            <i class="fas fa-sign-out-alt text-lg w-8"></i>
-                            <span>Logout</span>
-                        </div>
-                    </nav>
-                </div>
+                <h1 class="text-2xl font-bold">VideoFlex</h1>
             </div>
         </div>
+        <div class="sidebar-content">
+            <div class="mt-6 px-4">
+                <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-4 px-4">Content Management</p>
+                <nav class="space-y-2">
+                    <a href="admin-dashboard.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
+                        <i class="fas fa-home text-lg w-8"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="admin-videos.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
+                        <i class="fas fa-video text-lg w-8"></i>
+                        <span>Videos</span>
+                    </a>
+                    <a href="admin-categories.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
+                        <i class="fas fa-list text-lg w-8"></i>
+                        <span>Categories</span>
+                    </a>
+                    <a href="admin-actors.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
+                        <i class="fas fa-user-tie text-lg w-8"></i>
+                        <span>Actors</span>
+                    </a>
+                    <a href="admin-channels.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
+                        <i class="fas fa-users text-lg w-8"></i>
+                        <span>Channels</span>
+                    </a>
+                </nav>
 
-        <!-- Main Content -->
-        <main class="ml-64 p-8 w-full">
-            <div class="max-w-4xl mx-auto">
-                <!-- Header -->
-                <div class="mb-8">
-                    <h1 class="text-2xl font-bold">System Settings</h1>
-                    <p class="text-neutral-400">Configure your site settings and preferences</p>
-                </div>
+                <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-4 mt-8 px-4">System</p>
+                <nav class="space-y-2">
+                    <a href="admin-settings.html" class="nav-item px-4 py-3 flex items-center cursor-pointer bg-neutral-700/30">
+                        <i class="fas fa-cog text-lg w-8"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="admin-profile.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
+                        <i class="fas fa-user text-lg w-8"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="login.html" class="nav-item px-4 py-3 flex items-center cursor-pointer">
+                        <i class="fas fa-sign-out-alt text-lg w-8"></i>
+                        <span>Logout</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
 
-                <!-- General Settings -->
-                <div class="bg-neutral-800 rounded-xl p-6 mb-6">
-                    <h2 class="text-lg font-medium mb-6">General Settings</h2>
-                    <div class="space-y-4">
+    <!-- Main Content -->
+    <div class="ml-64 p-8">
+        <!-- Header -->
+        <header class="bg-neutral-800 shadow-sm rounded-xl p-4 mb-8 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-neutral-100">System Settings</h1>
+            <button type="button" class="md:hidden" onclick="toggleSidebar()">
+                <i class="fas fa-bars text-neutral-100"></i>
+            </button>
+        </header>
+
+        <!-- Settings Form -->
+        <div class="w-full">
+            <!-- Site Configuration -->
+            <div class="bg-neutral-800 rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-semibold text-neutral-100 mb-6">Site Configuration</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Site Name</label>
+                        <input type="text" class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none" value="VideoFlex">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Site Description</label>
+                        <textarea class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none" rows="3">A modern video streaming platform</textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm text-neutral-400 mb-1">Site Name</label>
-                            <input type="text" value="PeerCDN" class="w-full bg-neutral-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-500">
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Contact Email</label>
+                            <input type="email" class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none" value="support@videoflex.com">
                         </div>
                         <div>
-                            <label class="block text-sm text-neutral-400 mb-1">Site Description</label>
-                            <textarea class="w-full bg-neutral-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-500" rows="3">A modern video streaming platform powered by peer-to-peer technology.</textarea>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-neutral-400 mb-1">Contact Email</label>
-                            <input type="email" value="support@peercdn.com" class="w-full bg-neutral-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-500">
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Support Phone</label>
+                            <input type="tel" class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none" value="+1 (555) 123-4567">
                         </div>
                     </div>
-                </div>
-
-                <!-- Video Settings -->
-                <div class="bg-neutral-800 rounded-xl p-6 mb-6">
-                    <h2 class="text-lg font-medium mb-6">Video Settings</h2>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="font-medium">Auto-play Videos</h3>
-                                <p class="text-sm text-neutral-400">Automatically play videos when page loads</p>
-                            </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="sr-only peer" checked>
-                                <div class="w-11 h-6 bg-neutral-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-neutral-400 mb-1">Default Video Quality</label>
-                            <select class="w-full bg-neutral-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-500">
-                                <option>1080p</option>
-                                <option>720p</option>
-                                <option>480p</option>
-                                <option>360p</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-neutral-400 mb-1">Maximum Upload Size (MB)</label>
-                            <input type="number" value="500" class="w-full bg-neutral-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-500">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CDN Settings -->
-                <div class="bg-neutral-800 rounded-xl p-6 mb-6">
-                    <h2 class="text-lg font-medium mb-6">CDN Settings</h2>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="font-medium">Enable P2P CDN</h3>
-                                <p class="text-sm text-neutral-400">Use peer-to-peer content delivery</p>
-                            </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="sr-only peer" checked>
-                                <div class="w-11 h-6 bg-neutral-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-neutral-400 mb-1">Fallback CDN URL</label>
-                            <input type="url" value="https://cdn.peercdn.com" class="w-full bg-neutral-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm text-neutral-400 mb-1">Maximum Peer Connections</label>
-                            <input type="number" value="20" class="w-full bg-neutral-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-500">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Analytics Settings -->
-                <div class="bg-neutral-800 rounded-xl p-6 mb-6">
-                    <h2 class="text-lg font-medium mb-6">Analytics Settings</h2>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="font-medium">Enable Analytics</h3>
-                                <p class="text-sm text-neutral-400">Collect user behavior data</p>
-                            </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="sr-only peer" checked>
-                                <div class="w-11 h-6 bg-neutral-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-neutral-400 mb-1">Google Analytics ID</label>
-                            <input type="text" value="UA-XXXXXXXX-X" class="w-full bg-neutral-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-500">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Save Button -->
-                <div class="flex justify-end space-x-4">
-                    <button class="px-6 py-2.5 bg-neutral-800 rounded-lg hover:bg-neutral-700">Reset to Default</button>
-                    <button class="px-6 py-2.5 bg-red-500 rounded-lg hover:bg-red-600">Save Changes</button>
                 </div>
             </div>
-        </main>
+
+            <!-- CDN Settings -->
+            <div class="bg-neutral-800 rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-semibold text-neutral-100 mb-6">CDN Configuration</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">CDN Provider</label>
+                        <select class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none">
+                            <option>Cloudflare</option>
+                            <option>Amazon CloudFront</option>
+                            <option>Akamai</option>
+                            <option>Custom</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">CDN URL</label>
+                        <input type="url" class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none" value="https://cdn.videoflex.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">API Key</label>
+                        <div class="relative">
+                            <input type="password" class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none" value="••••••••••••••••">
+                            <button class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-100">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cache Settings -->
+            <div class="bg-neutral-800 rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-semibold text-neutral-100 mb-6">Cache Settings</h2>
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-neutral-100 font-medium">Enable Caching</h3>
+                            <p class="text-neutral-400 text-sm mt-1">Improve performance by caching static content</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer" checked>
+                            <div class="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Cache Duration (hours)</label>
+                        <input type="number" class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none" value="24">
+                    </div>
+                    <div>
+                        <button type="button" class="bg-neutral-700 text-neutral-100 px-4 py-2 rounded-lg hover:bg-neutral-600 transition-colors">
+                            Clear Cache
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integration Settings -->
+            <div class="bg-neutral-800 rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-semibold text-neutral-100 mb-6">Integration Settings</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Analytics Provider</label>
+                        <select class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none">
+                            <option>Google Analytics</option>
+                            <option>Mixpanel</option>
+                            <option>Custom</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Analytics ID</label>
+                        <input type="text" class="form-input w-full bg-neutral-700 border-neutral-600 rounded-lg px-4 py-2.5 text-neutral-100 focus:outline-none" value="UA-XXXXXXXXX-X">
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-neutral-100 font-medium">Enable Error Tracking</h3>
+                            <p class="text-neutral-400 text-sm mt-1">Track and report application errors</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer" checked>
+                            <div class="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Save Button -->
+            <div class="flex justify-start">
+                <button type="button" class="bg-red-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-neutral-900">
+                    Save Changes
+                </button>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+            sidebar.classList.toggle('md:translate-x-0');
+        }
+    </script>
 </body>
 </html>
