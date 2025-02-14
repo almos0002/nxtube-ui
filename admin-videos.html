@@ -210,132 +210,105 @@
         </div>
 
         <!-- Video List -->
-        <div class="bg-neutral-800 rounded-xl shadow-sm p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-semibold text-neutral-100">Video List</h3>
-                <div class="flex space-x-4">
-                    <select class="px-3 py-2 bg-neutral-700 border-neutral-600 rounded-lg text-sm text-neutral-100">
-                        <option>All Videos</option>
-                        <option>Active</option>
-                        <option>Processing</option>
-                        <option>Failed</option>
-                    </select>
-                    <select class="px-3 py-2 bg-neutral-700 border-neutral-600 rounded-lg text-sm text-neutral-100">
-                        <option>Sort by: Latest</option>
-                        <option>Sort by: Title</option>
-                        <option>Sort by: Views</option>
-                        <option>Sort by: Duration</option>
-                    </select>
+        <div class="space-y-4">
+            <!-- Video Item 1 -->
+            <div class="bg-neutral-700/30 rounded-xl p-4 flex items-center space-x-4">
+                <div class="relative w-48 flex-shrink-0">
+                    <img src="https://via.placeholder.com/320x180" class="w-full h-28 object-cover rounded-lg">
+                    <span class="absolute bottom-2 right-2 px-2 py-1 bg-black/70 text-white text-xs rounded">15:20</span>
                 </div>
-            </div>
-
-            <!-- Video Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Video Card 1 -->
-                <div class="bg-neutral-700/30 rounded-xl overflow-hidden">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/320x180" class="w-full h-48 object-cover">
-                        <span class="absolute bottom-2 right-2 px-2 py-1 bg-black/70 text-white text-xs rounded">12:34</span>
+                <div class="flex-grow">
+                    <h4 class="text-neutral-100 font-semibold">Getting Started with Web Development</h4>
+                    <div class="flex items-center space-x-4 mt-2 text-sm text-neutral-400">
+                        <span><i class="fas fa-user mr-1"></i> John Doe</span>
+                        <span><i class="fas fa-eye mr-1"></i> 15.2K views</span>
+                        <span><i class="fas fa-clock mr-1"></i> 2 days ago</span>
                     </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-neutral-100 font-semibold">Ultimate Gaming Setup Tour 2025</h4>
-                                <p class="text-neutral-400 text-sm mt-1">Tech Reviews</p>
-                            </div>
-                            <span class="px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs">Active</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-4 text-sm">
-                            <div class="flex space-x-4">
-                                <span class="text-neutral-400">
-                                    <i class="fas fa-eye mr-1"></i> 15.2K
-                                </span>
-                                <span class="text-neutral-400">
-                                    <i class="fas fa-thumbs-up mr-1"></i> 1.2K
-                                </span>
-                            </div>
-                            <button class="text-neutral-400 hover:text-neutral-100">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-                        </div>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <span class="px-2 py-1 bg-green-500/20 text-green-400 text-sm rounded-lg">Published</span>
+                        <span class="text-sm text-neutral-400"># Technology</span>
                     </div>
                 </div>
-
-                <!-- Video Card 2 -->
-                <div class="bg-neutral-700/30 rounded-xl overflow-hidden">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/320x180" class="w-full h-48 object-cover">
-                        <span class="absolute bottom-2 right-2 px-2 py-1 bg-black/70 text-white text-xs rounded">8:45</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-neutral-100 font-semibold">10 Must-Try Recipes for Beginners</h4>
-                                <p class="text-neutral-400 text-sm mt-1">Cooking Master</p>
-                            </div>
-                            <span class="px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded text-xs">Processing</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-4 text-sm">
-                            <div class="flex space-x-4">
-                                <span class="text-neutral-400">
-                                    <i class="fas fa-eye mr-1"></i> 8.7K
-                                </span>
-                                <span class="text-neutral-400">
-                                    <i class="fas fa-thumbs-up mr-1"></i> 945
-                                </span>
-                            </div>
-                            <button class="text-neutral-400 hover:text-neutral-100">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video Card 3 -->
-                <div class="bg-neutral-700/30 rounded-xl overflow-hidden">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/320x180" class="w-full h-48 object-cover">
-                        <span class="absolute bottom-2 right-2 px-2 py-1 bg-black/70 text-white text-xs rounded">15:20</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-neutral-100 font-semibold">Pro Gaming Tips & Tricks</h4>
-                                <p class="text-neutral-400 text-sm mt-1">Gaming Hub</p>
-                            </div>
-                            <span class="px-2 py-1 bg-red-500/20 text-red-400 rounded text-xs">Failed</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-4 text-sm">
-                            <div class="flex space-x-4">
-                                <span class="text-neutral-400">
-                                    <i class="fas fa-eye mr-1"></i> 12.4K
-                                </span>
-                                <span class="text-neutral-400">
-                                    <i class="fas fa-thumbs-up mr-1"></i> 1.1K
-                                </span>
-                            </div>
-                            <button class="text-neutral-400 hover:text-neutral-100">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="flex justify-between items-center mt-8">
-                <p class="text-neutral-400 text-sm">Showing 1-9 of 1,234 videos</p>
                 <div class="flex space-x-2">
-                    <button class="px-3 py-1 bg-neutral-700 text-neutral-300 rounded-lg hover:bg-neutral-600">
-                        <i class="fas fa-chevron-left"></i>
+                    <button class="p-2 text-neutral-400 hover:text-neutral-100">
+                        <i class="fas fa-pencil"></i>
                     </button>
-                    <button class="px-3 py-1 bg-red-500 text-white rounded-lg">1</button>
-                    <button class="px-3 py-1 bg-neutral-700 text-neutral-300 rounded-lg hover:bg-neutral-600">2</button>
-                    <button class="px-3 py-1 bg-neutral-700 text-neutral-300 rounded-lg hover:bg-neutral-600">3</button>
-                    <button class="px-3 py-1 bg-neutral-700 text-neutral-300 rounded-lg hover:bg-neutral-600">
-                        <i class="fas fa-chevron-right"></i>
+                    <button class="p-2 text-neutral-400 hover:text-red-500">
+                        <i class="fas fa-trash"></i>
                     </button>
                 </div>
+            </div>
+
+            <!-- Video Item 2 -->
+            <div class="bg-neutral-700/30 rounded-xl p-4 flex items-center space-x-4">
+                <div class="relative w-48 flex-shrink-0">
+                    <img src="https://via.placeholder.com/320x180" class="w-full h-28 object-cover rounded-lg">
+                    <span class="absolute bottom-2 right-2 px-2 py-1 bg-black/70 text-white text-xs rounded">08:45</span>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="text-neutral-100 font-semibold">Top 10 Gaming Moments</h4>
+                    <div class="flex items-center space-x-4 mt-2 text-sm text-neutral-400">
+                        <span><i class="fas fa-user mr-1"></i> Jane Smith</span>
+                        <span><i class="fas fa-eye mr-1"></i> 8.7K views</span>
+                        <span><i class="fas fa-clock mr-1"></i> 5 days ago</span>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <span class="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-sm rounded-lg">Draft</span>
+                        <span class="text-sm text-neutral-400"># Gaming</span>
+                    </div>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="p-2 text-neutral-400 hover:text-neutral-100">
+                        <i class="fas fa-pencil"></i>
+                    </button>
+                    <button class="p-2 text-neutral-400 hover:text-red-500">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video Item 3 -->
+            <div class="bg-neutral-700/30 rounded-xl p-4 flex items-center space-x-4">
+                <div class="relative w-48 flex-shrink-0">
+                    <img src="https://via.placeholder.com/320x180" class="w-full h-28 object-cover rounded-lg">
+                    <span class="absolute bottom-2 right-2 px-2 py-1 bg-black/70 text-white text-xs rounded">12:30</span>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="text-neutral-100 font-semibold">Music Production Basics</h4>
+                    <div class="flex items-center space-x-4 mt-2 text-sm text-neutral-400">
+                        <span><i class="fas fa-user mr-1"></i> Mike Johnson</span>
+                        <span><i class="fas fa-eye mr-1"></i> 5.1K views</span>
+                        <span><i class="fas fa-clock mr-1"></i> 1 week ago</span>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <span class="px-2 py-1 bg-green-500/20 text-green-400 text-sm rounded-lg">Published</span>
+                        <span class="text-sm text-neutral-400"># Music</span>
+                    </div>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="p-2 text-neutral-400 hover:text-neutral-100">
+                        <i class="fas fa-pencil"></i>
+                    </button>
+                    <button class="p-2 text-neutral-400 hover:text-red-500">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-between items-center mt-8">
+            <p class="text-neutral-400 text-sm">Showing 1-9 of 1,234 videos</p>
+            <div class="flex space-x-2">
+                <button class="px-3 py-1 bg-neutral-700 text-neutral-300 rounded-lg hover:bg-neutral-600">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="px-3 py-1 bg-red-500 text-white rounded-lg">1</button>
+                <button class="px-3 py-1 bg-neutral-700 text-neutral-300 rounded-lg hover:bg-neutral-600">2</button>
+                <button class="px-3 py-1 bg-neutral-700 text-neutral-300 rounded-lg hover:bg-neutral-600">3</button>
+                <button class="px-3 py-1 bg-neutral-700 text-neutral-300 rounded-lg hover:bg-neutral-600">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </div>
