@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category Management - VideoFlex</title>
+    <title>Add New Channel - VideoFlex</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -110,61 +110,212 @@
 
     <!-- Main Content -->
     <div class="ml-64 p-8">
-        <header class="bg-neutral-800 shadow-sm rounded-xl p-4 mb-8">
-            <h2 class="text-2xl font-bold text-neutral-100">Create New Channel</h2>
-            <p class="text-neutral-400">Manage video channels and their settings</p>
+        <header class="bg-neutral-800 shadow-sm rounded-xl p-4 mb-8 flex justify-between items-center">
+            <div>
+                <h2 class="text-2xl font-bold text-neutral-100">Add New Channel</h2>
+                <p class="text-neutral-400">Create and customize your channel</p>
+            </div>
+            <button type="submit" form="channelForm" class="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+                Create Channel
+            </button>
         </header>
 
-        <div class="bg-neutral-800 rounded-xl shadow-sm p-6">
-            <form class="space-y-6">
-                <div>
-                    <label class="block text-neutral-300 mb-2">Channel Name</label>
-                    <input type="text" class="w-full px-4 py-2 bg-neutral-700 rounded-lg">
-                </div>
-
-                <div>
-                    <label class="block text-neutral-300 mb-2">Description</label>
-                    <textarea class="w-full px-4 py-2 bg-neutral-700 rounded-lg h-32"></textarea>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form id="channelForm" class="max-w-3xl">
+            <!-- Basic Information -->
+            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
+                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Channel Information</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="relative w-32 h-32">
+                                <div id="avatarPreview" class="w-full h-full bg-neutral-700 rounded-full overflow-hidden flex items-center justify-center">
+                                    <img id="avatarImage" class="w-full h-full object-cover hidden">
+                                    <i id="avatarPlaceholder" class="fas fa-user text-4xl text-neutral-500"></i>
+                                </div>
+                                <button type="button" onclick="document.getElementById('avatarInput').click()" 
+                                        class="absolute bottom-0 right-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                                    <i class="fas fa-camera text-white"></i>
+                                </button>
+                                <input type="file" id="avatarInput" accept="image/*" class="hidden">
+                            </div>
+                        </div>
+                        <div class="flex-grow space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Channel Name</label>
+                                <input type="text" name="name" required
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                       placeholder="Your channel name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Handle</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">@</span>
+                                    <input type="text" name="handle" required
+                                           class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-8 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                           placeholder="channel_handle">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div>
-                        <label class="block text-neutral-300 mb-2">Channel Owner</label>
-                        <select class="w-full px-4 py-2 bg-neutral-700 rounded-lg">
-                            <option>Select User</option>
-                            <option>John Doe</option>
-                            <option>Jane Smith</option>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Description</label>
+                        <textarea name="description" rows="4" required
+                                  class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                  placeholder="Tell viewers about your channel"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Channel Banner -->
+            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
+                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Channel Banner</h3>
+                <div class="space-y-4">
+                    <div id="bannerPreview" class="aspect-[5/1] bg-neutral-700 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img id="bannerImage" class="w-full h-full object-cover hidden">
+                        <div id="bannerPlaceholder" class="text-center">
+                            <i class="fas fa-image text-4xl text-neutral-500 mb-2"></i>
+                            <p class="text-sm text-neutral-400">Recommended size: 2048x410 pixels</p>
+                        </div>
+                    </div>
+                    <button type="button" onclick="document.getElementById('bannerInput').click()" 
+                            class="px-4 py-2 bg-neutral-700 hover:bg-neutral-600 rounded-lg transition-colors">
+                        Upload Banner
+                    </button>
+                    <input type="file" id="bannerInput" accept="image/*" class="hidden">
+                </div>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
+                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Social Media Links</h3>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                <i class="fab fa-twitter text-neutral-400"></i>
+                            </span>
+                            <input type="url" name="twitter" placeholder="Twitter URL"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                <i class="fab fa-instagram text-neutral-400"></i>
+                            </span>
+                            <input type="url" name="instagram" placeholder="Instagram URL"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                <i class="fab fa-facebook text-neutral-400"></i>
+                            </span>
+                            <input type="url" name="facebook" placeholder="Facebook URL"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                <i class="fab fa-tiktok text-neutral-400"></i>
+                            </span>
+                            <input type="url" name="tiktok" placeholder="TikTok URL"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Channel Settings -->
+            <div class="bg-neutral-800 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Channel Settings</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Channel Type</label>
+                        <select name="type" required
+                                class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                            <option value="personal">Personal</option>
+                            <option value="business">Business</option>
+                            <option value="educational">Educational</option>
+                            <option value="entertainment">Entertainment</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-neutral-300 mb-2">Category</label>
-                        <select class="w-full px-4 py-2 bg-neutral-700 rounded-lg">
-                            <option>Select Category</option>
-                            <option>Gaming</option>
-                            <option>Cooking</option>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Default Language</label>
+                        <select name="language" required
+                                class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                            <option value="hi">Hindi</option>
                         </select>
                     </div>
+                    <div>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" name="comments" checked
+                                   class="text-red-500 focus:ring-red-500">
+                            <span class="text-neutral-300">Enable comments by default</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" name="notifications" checked
+                                   class="text-red-500 focus:ring-red-500">
+                            <span class="text-neutral-300">Allow subscriber notifications</span>
+                        </label>
+                    </div>
                 </div>
-
-                <div>
-                    <label class="block text-neutral-300 mb-2">Channel Logo</label>
-                    <input type="file" class="w-full px-4 py-2 bg-neutral-700 rounded-lg">
-                </div>
-
-                <button class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                    <i class="fas fa-broadcast-tower mr-2"></i>
-                    Create Channel
-                </button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
     <script>
+        // Sidebar toggle
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('-translate-x-full');
-            sidebar.classList.toggle('md:translate-x-0');
         }
+
+        // Avatar handling
+        const avatarInput = document.getElementById('avatarInput');
+        const avatarImage = document.getElementById('avatarImage');
+        const avatarPlaceholder = document.getElementById('avatarPlaceholder');
+
+        avatarInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    avatarImage.src = e.target.result;
+                    avatarImage.classList.remove('hidden');
+                    avatarPlaceholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Banner handling
+        const bannerInput = document.getElementById('bannerInput');
+        const bannerImage = document.getElementById('bannerImage');
+        const bannerPlaceholder = document.getElementById('bannerPlaceholder');
+
+        bannerInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    bannerImage.src = e.target.result;
+                    bannerImage.classList.remove('hidden');
+                    bannerPlaceholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission
+        const channelForm = document.getElementById('channelForm');
+        channelForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add your form submission logic here
+            alert('Channel created successfully!');
+        });
     </script>
 </body>
 </html>

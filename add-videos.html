@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category Management - VideoFlex</title>
+    <title>Add New Video - VideoFlex</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.1/dist/ffmpeg.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .nav-item {
@@ -115,59 +116,274 @@
                 <h2 class="text-2xl font-bold text-neutral-100">Add New Video</h2>
                 <p class="text-neutral-400">Upload and manage video content</p>
             </div>
+            <button type="submit" form="videoForm" class="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+                Publish Video
+            </button>
         </header>
 
-        <!-- Video Form -->
-        <div class="bg-neutral-800 rounded-xl shadow-sm p-6">
-            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-4">
-                    <div>
-                        <label class="text-neutral-300 block mb-2">Title</label>
-                        <input type="text" class="w-full px-4 py-2 bg-neutral-700 rounded-lg text-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="text-neutral-300 block mb-2">Description</label>
-                        <textarea class="w-full px-4 py-2 bg-neutral-700 rounded-lg text-neutral-100 h-32 resize-none focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
-                    </div>
-                    <div>
-                        <label class="text-neutral-300 block mb-2">Category</label>
-                        <select class="w-full px-4 py-2 bg-neutral-700 rounded-lg text-neutral-100 focus:ring-2 focus:ring-red-500 focus:outline-none">
-                            <option>Gaming</option>
-                            <option>Technology</option>
-                            <option>Cooking</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="space-y-4">
-                    <div>
-                        <label class="text-neutral-300 block mb-2">Thumbnail</label>
-                        <div class="border-2 border-dashed border-neutral-600 rounded-xl p-8 text-center">
-                            <i class="fas fa-image text-3xl text-neutral-500 mb-4"></i>
-                            <p class="text-neutral-400">Drag & drop or <span class="text-red-500 cursor-pointer">browse</span></p>
+        <form id="videoForm" class="grid grid-cols-3 gap-8">
+            <!-- Main Content Column -->
+            <div class="col-span-2 space-y-6">
+                <!-- Video Upload Section -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Video Upload</h3>
+                    <div id="dropZone" class="border-2 border-dashed border-neutral-600 rounded-xl p-8 text-center hover:border-red-500 transition-colors">
+                        <input type="file" id="videoInput" accept="video/*" class="hidden">
+                        <div id="uploadIcon" class="mb-4">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-neutral-400"></i>
+                        </div>
+                        <div id="uploadText">
+                            <p class="text-lg text-neutral-300 mb-2">Drag and drop your video here</p>
+                            <p class="text-sm text-neutral-400">or</p>
+                            <button type="button" onclick="document.getElementById('videoInput').click()" 
+                                    class="mt-2 px-4 py-2 bg-neutral-700 hover:bg-neutral-600 rounded-lg transition-colors">
+                                Browse Files
+                            </button>
+                        </div>
+                        <div id="uploadProgress" class="hidden mt-4">
+                            <div class="w-full bg-neutral-700 rounded-full h-2">
+                                <div id="progressBar" class="bg-red-500 h-2 rounded-full transition-all" style="width: 0%"></div>
+                            </div>
+                            <p id="progressText" class="text-sm text-neutral-400 mt-2">0% uploaded</p>
                         </div>
                     </div>
-                    <div>
-                        <label class="text-neutral-300 block mb-2">Video File</label>
-                        <div class="border-2 border-dashed border-neutral-600 rounded-xl p-8 text-center">
-                            <i class="fas fa-video text-3xl text-neutral-500 mb-4"></i>
-                            <p class="text-neutral-400">Drag & drop or <span class="text-red-500 cursor-pointer">browse</span></p>
+                </div>
+
+                <!-- Video Details -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Video Details</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Title</label>
+                            <input type="text" name="title" required
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Description</label>
+                            <textarea name="description" rows="4" required
+                                      class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Category</label>
+                                <select name="category" required
+                                        class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                    <option value="">Select Category</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="education">Education</option>
+                                    <option value="gaming">Gaming</option>
+                                    <option value="music">Music</option>
+                                    <option value="tech">Technology</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Language</label>
+                                <select name="language" required
+                                        class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                    <option value="">Select Language</option>
+                                    <option value="en">English</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                    <option value="de">German</option>
+                                    <option value="hi">Hindi</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Tags</label>
+                            <input type="text" name="tags" placeholder="Add tags separated by commas"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
                         </div>
                     </div>
-                    <button class="w-full py-3 bg-red-500 hover:bg-red-600 rounded-lg text-white font-semibold transition-colors">
-                        Upload Video
-                    </button>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <!-- Sidebar Column -->
+            <div class="col-span-1 space-y-6">
+                <!-- Thumbnail Section -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Thumbnail</h3>
+                    <div id="thumbnailPreview" class="aspect-video bg-neutral-700 rounded-lg mb-4 overflow-hidden">
+                        <img id="thumbnailImage" class="w-full h-full object-cover hidden">
+                        <div id="thumbnailPlaceholder" class="w-full h-full flex items-center justify-center">
+                            <i class="fas fa-image text-4xl text-neutral-500"></i>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button type="button" onclick="generateThumbnail()" 
+                                class="flex-1 px-4 py-2 bg-neutral-700 hover:bg-neutral-600 rounded-lg transition-colors">
+                            Generate
+                        </button>
+                        <button type="button" onclick="document.getElementById('thumbnailInput').click()" 
+                                class="flex-1 px-4 py-2 bg-neutral-700 hover:bg-neutral-600 rounded-lg transition-colors">
+                            Upload
+                        </button>
+                        <input type="file" id="thumbnailInput" accept="image/*" class="hidden">
+                    </div>
+                </div>
+
+                <!-- Privacy Settings -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Privacy Settings</h3>
+                    <div class="space-y-4">
+                        <label class="flex items-center space-x-3">
+                            <input type="radio" name="privacy" value="public" checked
+                                   class="text-red-500 focus:ring-red-500">
+                            <span class="text-neutral-300">Public</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="radio" name="privacy" value="unlisted"
+                                   class="text-red-500 focus:ring-red-500">
+                            <span class="text-neutral-300">Unlisted</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="radio" name="privacy" value="private"
+                                   class="text-red-500 focus:ring-red-500">
+                            <span class="text-neutral-300">Private</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Advanced Settings -->
+                <div class="bg-neutral-800 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-neutral-100 mb-4">Advanced Settings</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">License</label>
+                            <select name="license"
+                                    class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                <option value="standard">Standard License</option>
+                                <option value="creative">Creative Commons</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" name="comments" checked
+                                       class="text-red-500 focus:ring-red-500">
+                                <span class="text-neutral-300">Allow comments</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" name="embedding" checked
+                                       class="text-red-500 focus:ring-red-500">
+                                <span class="text-neutral-300">Allow embedding</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <script>
+        // Sidebar toggle function
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('-translate-x-full');
-            sidebar.classList.toggle('md:translate-x-0');
         }
+
+        // Drag and drop functionality
+        const dropZone = document.getElementById('dropZone');
+        const videoInput = document.getElementById('videoInput');
+        const uploadProgress = document.getElementById('uploadProgress');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-red-500');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('border-red-500');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-red-500');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('video/')) {
+                handleVideoUpload(file);
+            }
+        });
+
+        videoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                handleVideoUpload(file);
+            }
+        });
+
+        function handleVideoUpload(file) {
+            // Show upload progress
+            uploadProgress.classList.remove('hidden');
+            
+            // Simulate upload progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                if (progress <= 100) {
+                    progressBar.style.width = `${progress}%`;
+                    progressText.textContent = `${progress}% uploaded`;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 200);
+        }
+
+        // Thumbnail handling
+        const thumbnailInput = document.getElementById('thumbnailInput');
+        const thumbnailImage = document.getElementById('thumbnailImage');
+        const thumbnailPlaceholder = document.getElementById('thumbnailPlaceholder');
+
+        thumbnailInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    thumbnailImage.src = e.target.result;
+                    thumbnailImage.classList.remove('hidden');
+                    thumbnailPlaceholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        async function generateThumbnail() {
+            const video = document.createElement('video');
+            const file = videoInput.files[0];
+            
+            if (!file) {
+                alert('Please upload a video first');
+                return;
+            }
+
+            video.src = URL.createObjectURL(file);
+            video.addEventListener('loadeddata', () => {
+                video.currentTime = 1; // Generate thumbnail from 1 second mark
+            });
+
+            video.addEventListener('seeked', () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                
+                thumbnailImage.src = canvas.toDataURL();
+                thumbnailImage.classList.remove('hidden');
+                thumbnailPlaceholder.classList.add('hidden');
+            });
+        }
+
+        // Form submission
+        const videoForm = document.getElementById('videoForm');
+        videoForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add your form submission logic here
+            alert('Video uploaded successfully!');
+        });
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category Management - VideoFlex</title>
+    <title>Add New Actor - VideoFlex</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -110,58 +110,204 @@
 
     <!-- Main Content -->
     <div class="ml-64 p-8">
-        <header class="bg-neutral-800 shadow-sm rounded-xl p-4 mb-8">
-            <h2 class="text-2xl font-bold text-neutral-100">Add New Actor</h2>
-            <p class="text-neutral-400">Manage actors and their profiles</p>
+        <header class="bg-neutral-800 shadow-sm rounded-xl p-4 mb-8 flex justify-between items-center">
+            <div>
+                <h2 class="text-2xl font-bold text-neutral-100">Add New Actor</h2>
+                <p class="text-neutral-400">Add and manage content creators</p>
+            </div>
+            <button type="submit" form="actorForm" class="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+                Create Actor
+            </button>
         </header>
 
-        <div class="bg-neutral-800 rounded-xl shadow-sm p-6">
-            <form class="space-y-6">
-                <div class="flex items-center space-x-6">
-                    <div class="w-32 h-32 rounded-full bg-neutral-700 border-2 border-dashed flex items-center justify-center cursor-pointer">
-                        <i class="fas fa-camera text-2xl text-neutral-400"></i>
+        <form id="actorForm" class="max-w-3xl">
+            <!-- Basic Information -->
+            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
+                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Actor Information</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="relative w-32 h-32">
+                                <div id="profilePreview" class="w-full h-full bg-neutral-700 rounded-full overflow-hidden flex items-center justify-center">
+                                    <img id="profileImage" class="w-full h-full object-cover hidden">
+                                    <i id="profilePlaceholder" class="fas fa-user text-4xl text-neutral-500"></i>
+                                </div>
+                                <button type="button" onclick="document.getElementById('profileInput').click()" 
+                                        class="absolute bottom-0 right-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                                    <i class="fas fa-camera text-white"></i>
+                                </button>
+                                <input type="file" id="profileInput" accept="image/*" class="hidden">
+                            </div>
+                        </div>
+                        <div class="flex-grow space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-300 mb-2">First Name</label>
+                                    <input type="text" name="firstName" required
+                                           class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                           placeholder="First name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-300 mb-2">Last Name</label>
+                                    <input type="text" name="lastName" required
+                                           class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                           placeholder="Last name">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">Stage Name</label>
+                                <input type="text" name="stageName"
+                                       class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                       placeholder="Stage name (if different)">
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex-1">
-                        <label class="block text-neutral-300 mb-2">Profile Photo</label>
-                        <input type="file" class="w-full px-4 py-2 bg-neutral-700 rounded-lg">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-neutral-300 mb-2">First Name</label>
-                        <input type="text" class="w-full px-4 py-2 bg-neutral-700 rounded-lg">
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Biography</label>
+                        <textarea name="biography" rows="4" required
+                                  class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                  placeholder="Tell us about the actor"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Details -->
+            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
+                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Professional Details</h3>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Primary Category</label>
+                            <select name="category" required
+                                    class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                                <option value="">Select Category</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="education">Education</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="music">Music</option>
+                                <option value="tech">Technology</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-300 mb-2">Years Active</label>
+                            <input type="number" name="yearsActive" min="0" max="100"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                                   placeholder="Years of experience">
+                        </div>
                     </div>
                     <div>
-                        <label class="block text-neutral-300 mb-2">Last Name</label>
-                        <input type="text" class="w-full px-4 py-2 bg-neutral-700 rounded-lg">
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Skills & Expertise</label>
+                        <input type="text" name="skills" required
+                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                               placeholder="e.g., Gaming Commentary, Educational Content, Music Production">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Languages</label>
+                        <input type="text" name="languages" required
+                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                               placeholder="Languages spoken, separated by commas">
                     </div>
                 </div>
+            </div>
 
-                <div>
-                    <label class="block text-neutral-300 mb-2">Biography</label>
-                    <textarea class="w-full px-4 py-2 bg-neutral-700 rounded-lg h-32"></textarea>
+            <!-- Social Media Links -->
+            <div class="bg-neutral-800 rounded-xl p-6 mb-6">
+                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Social Media Links</h3>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                <i class="fab fa-twitter text-neutral-400"></i>
+                            </span>
+                            <input type="url" name="twitter" placeholder="Twitter URL"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                <i class="fab fa-instagram text-neutral-400"></i>
+                            </span>
+                            <input type="url" name="instagram" placeholder="Instagram URL"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                <i class="fab fa-youtube text-neutral-400"></i>
+                            </span>
+                            <input type="url" name="youtube" placeholder="YouTube URL"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2">
+                                <i class="fab fa-twitch text-neutral-400"></i>
+                            </span>
+                            <input type="url" name="twitch" placeholder="Twitch URL"
+                                   class="w-full bg-neutral-700 border border-neutral-600 rounded-lg pl-10 pr-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div>
-                    <label class="block text-neutral-300 mb-2">Date of Birth</label>
-                    <input type="date" class="w-full px-4 py-2 bg-neutral-700 rounded-lg">
+            <!-- Additional Settings -->
+            <div class="bg-neutral-800 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-neutral-100 mb-4">Additional Settings</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-neutral-300 mb-2">Featured Order</label>
+                        <input type="number" name="order" min="0" value="0"
+                               class="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-neutral-100 focus:outline-none focus:border-red-500"
+                               placeholder="Display order in featured section">
+                    </div>
+                    <div>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" name="featured"
+                                   class="text-red-500 focus:ring-red-500">
+                            <span class="text-neutral-300">Featured Actor</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" name="active" checked
+                                   class="text-red-500 focus:ring-red-500">
+                            <span class="text-neutral-300">Active</span>
+                        </label>
+                    </div>
                 </div>
-
-                <button class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                    <i class="fas fa-user-plus mr-2"></i>
-                    Add Actor
-                </button>
-            </form>
-        </div>s
+            </div>
+        </form>
     </div>
 
     <script>
+        // Sidebar toggle
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('-translate-x-full');
-            sidebar.classList.toggle('md:translate-x-0');
         }
+
+        // Profile image handling
+        const profileInput = document.getElementById('profileInput');
+        const profileImage = document.getElementById('profileImage');
+        const profilePlaceholder = document.getElementById('profilePlaceholder');
+
+        profileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profileImage.src = e.target.result;
+                    profileImage.classList.remove('hidden');
+                    profilePlaceholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission
+        const actorForm = document.getElementById('actorForm');
+        actorForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add your form submission logic here
+            alert('Actor profile created successfully!');
+        });
     </script>
 </body>
 </html>
